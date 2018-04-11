@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>Ly - ProjectManager - 登录</title>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 样式 -->
+    <link href="~/StaticResources/Include/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/login/site.css" rel="stylesheet" />
+    <!-- 自定义 -->
+    <link href="~/StaticResources/Web/css/login/login.css" rel="stylesheet" />
+    <!-- 图标 -->
+    <link rel="stylesheet" href="http://cdn.admui.com/demo/pjax/1.3.0/fonts/web-icons/web-icons.css">
+    <!-- 插件 -->
+    <link href="~/StaticResources/Include/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+</head>
+
+<body class="page-login layout-full page-dark">
+
+    <div class="page height-full">
+        <div class="page-content height-full">
+            <div class="page-brand-info vertical-align animation-slide-left hidden-xs">
+                <div class="page-brand vertical-align-middle">
+                    <div class="brand">
+
+                    </div>
+                    <h2 class="hidden-sm">Ly-ProjectManager 项目管理系统</h2>
+                    <ul class="list-icons hidden-sm">
+                        <li>
+                            <i class="wb-check" aria-hidden="true"></i> 我们必须看到所有的问题，不管它们有多么复杂，只要你以正确的方式看待，它们就不会变得更加复杂。
+                        </li>
+                        <li><i class="wb-check" aria-hidden="true"></i> 专才”对越来越少的事物了解得越来越多，直到最后他对不存在的事物无所不知;然而，“通才”对越来越多的事物了解得越来越少，直到最后他对一切事物一无所知。</li>
+                        <li>
+                            <i class="wb-check" aria-hidden="true"></i> 卓有成效的管理者善于用人之长。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-login-main animation-fade">
+
+                <div class="vertical-align">
+                    <div class="vertical-align-middle">
+                        <div class="brand visible-xs text-center">
+                            @*<img class="brand-img" src="http://cdn.admui.com/demo/pjax/1.3.0/images/logo.svg" height="50" alt="Admui">*@
+                        </div>
+                        <h3 class="hidden-xs">
+                            登录 Ly-ProjectManager
+                        </h3>
+                        <p class="hidden-xs">项目管理系统</p>
+                        <form class="login-form" id="loginForm">
+                            <div class="form-group">
+                                <label class="sr-only" for="identity">选择身份</label>
+                                <select class="form-control selectpicker" id="identity" name="userType">
+                                    <option data-value="3">学生</option>
+                                    <option data-divider="true"></option>
+                                    <option data-value="1">教师</option>
+                                    <option data-value="2">管理员</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="username">用户名</label>
+                                <input type="text" class="form-control" id="username" name="loginName" placeholder="请输入用户名">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">密码</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="validCode" placeholder="请输入验证码">
+                                    <a class="input-group-addon padding-0 reload-vify" href="javascript:;">
+                                        <img src="/Login/VerificationCode" height="40">
+                                    </a>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block margin-top-30">立即登录</button>
+                        </form>
+                    </div>
+                </div>
+                <footer class="page-copyright">
+                    <p>
+                        Ly &copy;
+                        <a href="http://www.baidu.com" target="_blank">gydayao.com</a>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="~/StaticResources/Include/jquery/jquery-3.1.1.min.js"></script>
+    <script src="~/StaticResources/Include/bootstrap/js/bootstrap.js"></script>
+    <script src="~/StaticResources/Include/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="~/StaticResources/Web/js/login.js"></script>
+</body>
+
+</html>

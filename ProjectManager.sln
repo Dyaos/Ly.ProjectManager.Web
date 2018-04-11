@@ -1,0 +1,105 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Web", "ProjectManager\Ly.ProjectManager.Web.csproj", "{8B8CA3C0-B4DB-44B0-BCF3-59726940FA06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.Tests", "ProjectManager.Tests\ProjectManager.Tests.csproj", "{484FEF60-615D-44A2-ABA9-7557137E3304}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Ly.ProjectManager.Common", "1.Ly.ProjectManager.Common", "{830CF399-3E2D-4017-B6D6-9C10D380E9EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Ly.ProjectManager.Application", "2.Ly.ProjectManager.Application", "{CBF82ADD-48A5-4FDD-9DCE-31C233B972F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Ly.ProjectManager.Domain", "3.Ly.ProjectManager.Domain", "{954B7FB5-CB18-4A4C-BB45-0C680074A529}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Ly.ProjectManager.Framework", "4.Ly.ProjectManager.Framework", "{02B6BA04-0A72-4976-A047-CC772966AA8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Ly.ProjectManager.Infrastructure", "5.Ly.ProjectManager.Infrastructure", "{933DF837-26AB-4E35-A1AC-68AF24BC879D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.Ly.ProjectManager.Presentation", "6.Ly.ProjectManager.Presentation", "{3389B4F2-A178-48AE-B271-25EF9C1FA3B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.Ly.ProjectManager.Tests", "7.Ly.ProjectManager.Tests", "{B579BE51-0CC9-408C-9EAF-CFF840918763}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4net.Test", "Log4net.Test\Log4net.Test.csproj", "{944B79AF-FA40-42DA-902F-BE0ECD4D45EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Code", "Ly.ProjectManager.Code\Ly.ProjectManager.Code.csproj", "{DB19CE03-C307-43FE-A209-08AA4AE10E21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Application", "Ly.ProjectManger.Application\Ly.ProjectManager.Application.csproj", "{FFE12E27-2DAF-437B-9A04-76D891035BA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Repository", "Ly.ProjectManager.Repository\Ly.ProjectManager.Repository.csproj", "{4E135BC9-8C08-4B2E-AC99-08FEA288C809}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Domain", "Ly.ProjectManager.Domain\Ly.ProjectManager.Domain.csproj", "{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{337B620E-2982-4469-AC72-FAB555EC1365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Mapping", "Ly.ProjectManager.Mapping\Ly.ProjectManager.Mapping.csproj", "{DB7CEB14-E535-4713-9237-F0E92B0766C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ly.ProjectManager.Data", "Ly.ProjectManager.Data\Ly.ProjectManager.Data.csproj", "{91C56EEC-C76B-4BD5-9216-1F67E7E016A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B8CA3C0-B4DB-44B0-BCF3-59726940FA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8CA3C0-B4DB-44B0-BCF3-59726940FA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8CA3C0-B4DB-44B0-BCF3-59726940FA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8CA3C0-B4DB-44B0-BCF3-59726940FA06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{484FEF60-615D-44A2-ABA9-7557137E3304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{484FEF60-615D-44A2-ABA9-7557137E3304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{484FEF60-615D-44A2-ABA9-7557137E3304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{484FEF60-615D-44A2-ABA9-7557137E3304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{944B79AF-FA40-42DA-902F-BE0ECD4D45EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{944B79AF-FA40-42DA-902F-BE0ECD4D45EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{944B79AF-FA40-42DA-902F-BE0ECD4D45EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{944B79AF-FA40-42DA-902F-BE0ECD4D45EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB19CE03-C307-43FE-A209-08AA4AE10E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB19CE03-C307-43FE-A209-08AA4AE10E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB19CE03-C307-43FE-A209-08AA4AE10E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB19CE03-C307-43FE-A209-08AA4AE10E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE12E27-2DAF-437B-9A04-76D891035BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE12E27-2DAF-437B-9A04-76D891035BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE12E27-2DAF-437B-9A04-76D891035BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE12E27-2DAF-437B-9A04-76D891035BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E135BC9-8C08-4B2E-AC99-08FEA288C809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E135BC9-8C08-4B2E-AC99-08FEA288C809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E135BC9-8C08-4B2E-AC99-08FEA288C809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E135BC9-8C08-4B2E-AC99-08FEA288C809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{337B620E-2982-4469-AC72-FAB555EC1365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{337B620E-2982-4469-AC72-FAB555EC1365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{337B620E-2982-4469-AC72-FAB555EC1365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{337B620E-2982-4469-AC72-FAB555EC1365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7CEB14-E535-4713-9237-F0E92B0766C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7CEB14-E535-4713-9237-F0E92B0766C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7CEB14-E535-4713-9237-F0E92B0766C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7CEB14-E535-4713-9237-F0E92B0766C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91C56EEC-C76B-4BD5-9216-1F67E7E016A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91C56EEC-C76B-4BD5-9216-1F67E7E016A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91C56EEC-C76B-4BD5-9216-1F67E7E016A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91C56EEC-C76B-4BD5-9216-1F67E7E016A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B8CA3C0-B4DB-44B0-BCF3-59726940FA06} = {3389B4F2-A178-48AE-B271-25EF9C1FA3B4}
+		{484FEF60-615D-44A2-ABA9-7557137E3304} = {B579BE51-0CC9-408C-9EAF-CFF840918763}
+		{944B79AF-FA40-42DA-902F-BE0ECD4D45EE} = {B579BE51-0CC9-408C-9EAF-CFF840918763}
+		{DB19CE03-C307-43FE-A209-08AA4AE10E21} = {830CF399-3E2D-4017-B6D6-9C10D380E9EE}
+		{FFE12E27-2DAF-437B-9A04-76D891035BA2} = {CBF82ADD-48A5-4FDD-9DCE-31C233B972F4}
+		{4E135BC9-8C08-4B2E-AC99-08FEA288C809} = {954B7FB5-CB18-4A4C-BB45-0C680074A529}
+		{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8} = {954B7FB5-CB18-4A4C-BB45-0C680074A529}
+		{337B620E-2982-4469-AC72-FAB555EC1365} = {B579BE51-0CC9-408C-9EAF-CFF840918763}
+		{DB7CEB14-E535-4713-9237-F0E92B0766C8} = {954B7FB5-CB18-4A4C-BB45-0C680074A529}
+		{91C56EEC-C76B-4BD5-9216-1F67E7E016A6} = {830CF399-3E2D-4017-B6D6-9C10D380E9EE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C526F17D-4E29-49E1-89F7-7996F7F36BF5}
+	EndGlobalSection
+EndGlobal

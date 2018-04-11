@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects xmlns="http://www.springframework.net">
+  <object type="Ly.ProjectManager.Web.Controllers.LoginController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="TeacherApp"/>
+  </object>
+</objects>
