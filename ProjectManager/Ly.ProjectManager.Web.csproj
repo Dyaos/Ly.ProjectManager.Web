@@ -304,6 +304,10 @@
     <Content Include="StaticResources\Web\css\login\bootstrap.css" />
     <Content Include="StaticResources\Web\css\login\login.css" />
     <Content Include="StaticResources\Web\css\login\site.css" />
+    <Content Include="StaticResources\Web\css\patterns\header-profile-skin-1.png" />
+    <Content Include="StaticResources\Web\css\patterns\header-profile-skin-3.png" />
+    <Content Include="StaticResources\Web\css\patterns\header-profile.png" />
+    <Content Include="StaticResources\Web\css\patterns\shattered.png" />
     <Content Include="StaticResources\Web\css\style.css" />
     <Content Include="StaticResources\Web\fonts\webicons\web-icon.css" />
     <Content Include="StaticResources\Web\img\a1.jpg" />
@@ -343,6 +347,7 @@
     <Content Include="StaticResources\Web\img\webuploader.png" />
     <Content Include="StaticResources\Web\img\wenku_logo.png" />
     <Content Include="StaticResources\Web\js\contabs.js" />
+    <Content Include="StaticResources\Web\js\content.js" />
     <Content Include="StaticResources\Web\js\hplus.js" />
     <Content Include="StaticResources\Web\js\login.js" />
     <Content Include="StaticResources\Web\js\ly-common-ui.js" />
@@ -428,6 +433,7 @@
     <Content Include="StaticResources\Include\metisMenu\metisMenu.js.map" />
     <Content Include="StaticResources\Web\img\.DS_Store" />
     <Content Include="StaticResources\Web\img\browser.psd" />
+    <Content Include="Views\Home\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ly.ProjectManager.Code\Ly.ProjectManager.Code.csproj">
