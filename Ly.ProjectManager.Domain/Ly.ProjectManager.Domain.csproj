@@ -46,6 +46,8 @@
     <Compile Include="1.Infrastructure\IEntity.cs" />
     <Compile Include="1.Infrastructure\IModificationAudited.cs" />
     <Compile Include="2.IRepository\UserManagerment\ITeacherRepository.cs" />
+    <Compile Include="3.Entity\RoleEntity.cs" />
+    <Compile Include="3.Entity\StudentEntity.cs" />
     <Compile Include="3.Entity\TeatherEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

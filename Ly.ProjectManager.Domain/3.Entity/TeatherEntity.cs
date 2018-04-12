@@ -12,6 +12,8 @@ namespace Ly.ProjectManager.Domain._4.Entity
     {
         [Key]
         public string teacherGuid { get; set; }
+    
+        public int teacherIdentity { get; set; }
         /// <summary>
         /// 工号
         /// </summary>
@@ -57,6 +59,7 @@ namespace Ly.ProjectManager.Domain._4.Entity
         /// </summary>
         public string phone { get; set; }
 
+        //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
         public string lastModifyUserId { get; set; }
