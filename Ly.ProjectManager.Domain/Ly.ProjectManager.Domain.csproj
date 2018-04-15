@@ -41,14 +41,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1.Infrastructure\ICommonProperty.cs" />
     <Compile Include="1.Infrastructure\ICreationAudited.cs" />
     <Compile Include="1.Infrastructure\IDeleteAudited.cs" />
     <Compile Include="1.Infrastructure\IEntity.cs" />
     <Compile Include="1.Infrastructure\IModificationAudited.cs" />
-    <Compile Include="2.IRepository\UserManagerment\ITeacherRepository.cs" />
+    <Compile Include="2.IRepository\UserManagerment\IAccountRepository.cs" />
+    <Compile Include="3.Entity\AccountEntity.cs" />
+    <Compile Include="3.Entity\AccountRoleEntity.cs" />
+    <Compile Include="3.Entity\ClassEntity.cs" />
+    <Compile Include="3.Entity\ClassManageEntity.cs" />
+    <Compile Include="3.Entity\ClassTeacherEntity.cs" />
+    <Compile Include="3.Entity\DataDictionaryEntity.cs" />
+    <Compile Include="3.Entity\GradeEntity.cs" />
+    <Compile Include="3.Entity\ModuleButtonEntity.cs" />
+    <Compile Include="3.Entity\ModuleEntity.cs" />
+    <Compile Include="3.Entity\OperationLogEntity.cs" />
+    <Compile Include="3.Entity\ProjectEntity.cs" />
+    <Compile Include="3.Entity\ProjectPlanEntity.cs" />
+    <Compile Include="3.Entity\ProjectSubLeaderEntity.cs" />
+    <Compile Include="3.Entity\ProjectTeam.cs" />
+    <Compile Include="3.Entity\RoleAuthenticationEntity.cs" />
     <Compile Include="3.Entity\RoleEntity.cs" />
-    <Compile Include="3.Entity\StudentEntity.cs" />
-    <Compile Include="3.Entity\TeatherEntity.cs" />
+    <Compile Include="3.Entity\ClassStudentEntity.cs" />
+    <Compile Include="3.Entity\TeamMembersEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

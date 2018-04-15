@@ -9,15 +9,28 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    public class AccountEntity : IEntity<AccountEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
     {
         //自定义属性
         [Key]
-        public string roleGuid { get; set; }
+        public string accountGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
+        public int accountIdentity { get; set; }
+        public string accountNo { get; set; }
+        public string accountPwd { get; set; }
+        public string accountName { get; set; }
+        /// <summary>
+        /// 用户类型 1-管理员 2-教师 3-学生
+        /// </summary>
+        public int accountType { get; set; }
+        public Nullable<bool> gender { get; set; }
+        public string nation { get; set; }
+        public string birthday { get; set; }
+        public string accountCard { get; set; }
+        public string place { get; set; }
+        public string qq { get; set; }
+        public string wechat { get; set; }
+        public string phone { get; set; }
 
         //公共属性
         public string creatorUserId { get; set; }
@@ -34,6 +47,5 @@ namespace Ly.ProjectManager.Domain._3.Entity
         //外键属性
         [ForeignKey("accountRoleGuid")]
         public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
-
     }
 }

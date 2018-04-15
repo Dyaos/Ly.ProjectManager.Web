@@ -9,31 +9,26 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    /// <summary>
+    /// 数据字典实体
+    /// </summary>
+    public class DataDictionaryEntity : IEntity<DataDictionaryEntity>, ICreationAudited, IModificationAudited, ICommonProperty
     {
         //自定义属性
         [Key]
-        public string roleGuid { get; set; }
+        public string dataGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
+        public int dataIdentity { get; set; }
+        public string parentGuid { get; set; }
+        public string dataName { get; set; }
 
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
         public string lastModifyUserId { get; set; }
         public DateTime? lastModifyDateTime { get; set; }
-        public bool isDel { get; set; }
-        public string deleteUserId { get; set; }
-        public DateTime? deleteDateTime { get; set; }
         public int? sortCode { get; set; }
         public bool? isEnabled { get; set; }
         public string remarks { get; set; }
-
-        //外键属性
-        [ForeignKey("accountRoleGuid")]
-        public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
-
     }
 }

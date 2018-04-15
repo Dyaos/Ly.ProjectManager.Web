@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    public class ClassTeacherEntity : IEntity<ClassTeacherEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
     {
         //自定义属性
         [Key]
-        public string roleGuid { get; set; }
+        public string teacherGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
-
+        public int teacherIdentity { get; set; }
+        public string teacherName { get; set; }
+        public int teacherType { get; set; }
+        public int accountInfoGuid { get; set; }
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
@@ -27,13 +27,9 @@ namespace Ly.ProjectManager.Domain._3.Entity
         public bool isDel { get; set; }
         public string deleteUserId { get; set; }
         public DateTime? deleteDateTime { get; set; }
-        public int? sortCode { get; set; }
-        public bool? isEnabled { get; set; }
-        public string remarks { get; set; }
 
         //外键属性
-        [ForeignKey("accountRoleGuid")]
-        public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
-
+        [ForeignKey("classManageGuid")]
+        public ICollection<ClassManageEntity> classManageEntities { get; set; }
     }
 }

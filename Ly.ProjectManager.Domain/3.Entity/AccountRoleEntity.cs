@@ -9,31 +9,32 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    /// <summary>
+    /// 账户角色表
+    /// </summary>
+    public class AccountRoleEntity : IEntity<AccountRoleEntity>, ICreationAudited, IModificationAudited, ICommonProperty
     {
-        //自定义属性
+        // 自定义属性
         [Key]
-        public string roleGuid { get; set; }
+        public string accountRoleGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
+        public int accountRoleIdentity { get; set; }
 
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
         public string lastModifyUserId { get; set; }
         public DateTime? lastModifyDateTime { get; set; }
-        public bool isDel { get; set; }
-        public string deleteUserId { get; set; }
-        public DateTime? deleteDateTime { get; set; }
         public int? sortCode { get; set; }
         public bool? isEnabled { get; set; }
         public string remarks { get; set; }
 
         //外键属性
-        [ForeignKey("accountRoleGuid")]
-        public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
-
+        public string accountGuid { get; set; }
+        [ForeignKey("accountGuid")]
+        public AccountEntity accountEntity { get; set; }
+        public string roleGuid { get; set; }
+        [ForeignKey("roleGuid")]
+        public RoleEntity roleEntity { get; set; }
     }
 }

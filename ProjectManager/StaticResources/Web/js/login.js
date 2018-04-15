@@ -15,8 +15,8 @@
 });
 
 function bindBootstrapValidator() {
-    bindBootstrapValidatorAttribute($("form.validate-fom"));
-    $.each($("form.validate-fom"), function () {
+    bindBootstrapValidatorAttribute($("form.validate-form"));
+    $.each($("form.validate-form"), function () {
         $(this).bootstrapValidator({
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',

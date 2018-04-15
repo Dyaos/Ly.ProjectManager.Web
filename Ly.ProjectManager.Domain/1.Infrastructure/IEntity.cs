@@ -11,15 +11,6 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
     public class IEntity<TEntity>
     {
         /// <summary>
-        /// 排序码
-        /// </summary>
-        public Nullable<int> sortCode { get; set; }
-        /// <summary>
-        /// 是否启用
-        /// </summary>
-        public Nullable<bool> isEnabled { get; set; }
-
-        /// <summary>
         /// 创建
         /// </summary>
         public void Create()

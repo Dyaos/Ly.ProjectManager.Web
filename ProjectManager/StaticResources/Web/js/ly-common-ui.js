@@ -267,20 +267,15 @@ $.fn.formSerialize = function (formdate) {
     return postdata;
 };
 //验证表单
-$.fn.formValid = function () {
-    return $(this).valid({
-        errorPlacement: function (error, element) {
-            element.parents('.formValue').addClass('has-error');
-            element.parents('.has-error').find('i.error').remove();
-            element.parents('.has-error').append('<i class="form-control-feedback fa fa-exclamation-circle error" data-placement="left" data-toggle="tooltip" title="' + error + '"></i>');
-            $("[data-toggle='tooltip']").tooltip();
-            if (element.parents('.input-group').hasClass('input-group')) {
-                element.parents('.has-error').find('i.error').css('right', '33px')
-            }
-        },
-        success: function (element) {
-            element.parents('.has-error').find('i.error').remove();
-            element.parent().removeClass('has-error');
+//callback 回调函数
+$.fn.formValid = function (callback) {
+    var data = $(this).data("bootstrapValidator");
+    if (!!data) {
+        data.validate();
+        if (!data.isValid()) {
+            return false;
         }
-    });
+    }
+    return true;
 }
+

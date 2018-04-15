@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    public class GradeEntity : IEntity<GradeEntity>, ICreationAudited, IModificationAudited, IDeleteAudited, ICommonProperty
     {
         //自定义属性
         [Key]
-        public string roleGuid { get; set; }
+        public string gradeGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
+        public int gradeIdentity { get; set; }
+        public string gradeName { get; set; }
 
         //公共属性
         public string creatorUserId { get; set; }
@@ -32,8 +31,7 @@ namespace Ly.ProjectManager.Domain._3.Entity
         public string remarks { get; set; }
 
         //外键属性
-        [ForeignKey("accountRoleGuid")]
-        public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
-
+        [ForeignKey("classGuid")]
+        public ICollection<GradeEntity> gradeEntities { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Ly.ProjectManager.Domain._1.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    /// <summary>
+    /// 班级
+    /// </summary>
+    public class ClassEntity : IEntity<ClassEntity>, ICreationAudited, IModificationAudited, IDeleteAudited, ICommonProperty
     {
-        //自定义属性
-        [Key]
-        public string roleGuid { get; set; }
+        public string classGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
-
+        public int classIdentity { get; set; }
+        public string className { get; set; }
+        public string specialtiesName { get; set; }
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
@@ -32,8 +31,11 @@ namespace Ly.ProjectManager.Domain._3.Entity
         public string remarks { get; set; }
 
         //外键属性
-        [ForeignKey("accountRoleGuid")]
-        public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
+        [ForeignKey("gradeGuid")]
+        public GradeEntity gradeEntity { get; set; }
+        public string gradeGuid { get; set; }
 
+        [ForeignKey("classManageGuid")]
+        public ICollection<ClassManageEntity> classManageEntities { get; set; }
     }
 }

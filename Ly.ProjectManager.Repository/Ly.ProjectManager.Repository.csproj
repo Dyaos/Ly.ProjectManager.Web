@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserManagerment\TeahcerRepository.cs" />
+    <Compile Include="UserManagerment\AccountRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ly.ProjectManager.Code\Ly.ProjectManager.Code.csproj">

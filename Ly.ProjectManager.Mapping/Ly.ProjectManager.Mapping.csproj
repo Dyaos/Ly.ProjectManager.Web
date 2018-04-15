@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserManagement\TeacherMap.cs" />
+    <Compile Include="UserManagement\AccountMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ly.ProjectManager.Domain\Ly.ProjectManager.Domain.csproj">

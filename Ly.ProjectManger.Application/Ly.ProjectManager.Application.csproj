@@ -42,8 +42,8 @@
   <ItemGroup>
     <Compile Include="1.Infrastructure\IApplicationBase.cs" />
     <Compile Include="1.Infrastructure\ICommandOperation.cs" />
-    <Compile Include="2.IApplication\UserManagerment\ITeacherApp.cs" />
-    <Compile Include="3.Application\UserManagerment\TeacherApp.cs" />
+    <Compile Include="2.IApplication\UserManagerment\IAccountApp.cs" />
+    <Compile Include="3.Application\UserManagerment\AccountApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

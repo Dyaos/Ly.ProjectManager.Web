@@ -1,5 +1,5 @@
-﻿using Ly.ProjectManager.Domain._3.IRepository;
-using Ly.ProjectManager.Domain._4.Entity;
+﻿using Ly.ProjectManager.Domain._3.Entity;
+using Ly.ProjectManager.Domain._3.IRepository;
 using Ly.ProjectManger.Application._2.IApplication;
 using System;
 using System.Collections.Generic;
@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManger.Application._3.Application
 {
-    public class TeacherApp : ITeacherApp
+    public class AccountApp : IAccountApp
     {
-        private ITeacherRepository teacherRepository;
-        public TeacherApp(ITeacherRepository teacherRepository)
+        private IAccountRepository AccountRepository;
+        public AccountApp(IAccountRepository AccountRepository)
         {
-            this.teacherRepository = teacherRepository;
+            this.AccountRepository = AccountRepository;
         }
         /// <summary>
         /// 假删除
@@ -24,9 +24,9 @@ namespace Ly.ProjectManger.Application._3.Application
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                var entity = new TeatherEntity();
+                var entity = new AccountEntity();
                 entity.Remove(keyValue);
-                teacherRepository.Update(entity);
+                AccountRepository.Update(entity);
             }
             else
             {
@@ -34,7 +34,7 @@ namespace Ly.ProjectManger.Application._3.Application
             }
         }
 
-        public void SubmitForm(TeatherEntity entity, string keyValue)
+        public void SubmitForm(AccountEntity entity, string keyValue)
         {
             throw new NotImplementedException();
         }

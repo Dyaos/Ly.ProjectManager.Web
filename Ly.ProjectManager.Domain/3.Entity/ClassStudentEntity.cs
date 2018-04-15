@@ -2,28 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class StudentEntity:IEntity<StudentEntity>, ICreationAudited, IDeleteAudited, IModificationAudited
+    /// <summary>
+    /// 班级学员管理
+    /// </summary>
+    public class ClassStudentEntity : IEntity<ClassStudentEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
     {
         //自定义属性
         [Key]
         public string stuGuid { get; set; }
-        public string stuNo { get; set; }
-        public string stuPwd { get; set; }
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
+        public int? stuIdentity { get; set; }
         public string stuName { get; set; }
-        public Nullable<bool> gender { get; set; }
-        public string nation { get; set; }
-        public string birthday { get; set; }
-        public string stuCard { get; set; }
-        public string place { get; set; }
-        public string qq { get; set; }
-        public string wechat { get; set; }
-        public string phone { get; set; }
+        public string accountInfoGuid { get; set; }
 
         //公共属性
         public string creatorUserId { get; set; }
@@ -35,7 +32,9 @@ namespace Ly.ProjectManager.Domain._3.Entity
         public DateTime? deleteDateTime { get; set; }
 
         //外键属性
-        public string roleGuid { get; set; }
-
+        [ForeignKey("classGuid")]
+        public ClassEntity classEntity { get; set; }
+        public string className { get; set; }
+        public string classGuid { get; set; }
     }
 }

@@ -9,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Domain._3.Entity
 {
-    public class RoleEntity : IEntity<RoleEntity>, ICreationAudited, IDeleteAudited, IModificationAudited, ICommonProperty
+    public class ProjectTeam : IEntity<ProjectTeam>, ICreationAudited, IModificationAudited, ICommonProperty
     {
         //自定义属性
         [Key]
-        public string roleGuid { get; set; }
+        public string teamGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public int roleIdentity { get; set; }
-        public string roleName { get; set; }
-        public Nullable<int> roleLv { get; set; }
-
+        public string teamIdentity { get; set; }
+        public string teamName { get; set; }
+        /// <summary>
+        /// 允许创建项目类别
+        /// </summary>
+        public string allowCreateProjectCategory { get; set; }
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
@@ -32,8 +34,13 @@ namespace Ly.ProjectManager.Domain._3.Entity
         public string remarks { get; set; }
 
         //外键属性
-        [ForeignKey("accountRoleGuid")]
-        public ICollection<AccountRoleEntity> accountRoleEntities { get; set; }
-
+        public string planGuid { get; set; }
+        [ForeignKey("planGuid")]
+        public ProjectPlanEntity projectPlanEntity { get; set; }
+        public string classGuid { get; set; }
+        [ForeignKey("classGuid")]
+        public ClassEntity classEntity { get; set; }
+        [ForeignKey("membersGuid")]
+        public ICollection<TeamMembersEntity> teamMembersEntities { get; set; }
     }
 }
