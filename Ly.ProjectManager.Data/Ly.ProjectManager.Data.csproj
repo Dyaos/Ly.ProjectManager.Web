@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -48,6 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\ProjectManagerDbContext.cs" />
+    <Compile Include="Migrations\201804161429184_Initial.cs" />
+    <Compile Include="Migrations\201804161429184_Initial.Designer.cs">
+      <DependentUpon>201804161429184_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepositoryBase.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
@@ -57,9 +62,22 @@
       <Project>{DB19CE03-C307-43FE-A209-08AA4AE10E21}</Project>
       <Name>Ly.ProjectManager.Code</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ly.ProjectManager.Domain\Ly.ProjectManager.Domain.csproj">
+      <Project>{37C444D6-BAE5-48C9-8D52-AB5DA2984FE8}</Project>
+      <Name>Ly.ProjectManager.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804161429184_Initial.resx">
+      <DependentUpon>201804161429184_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

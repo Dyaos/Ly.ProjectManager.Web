@@ -56,6 +56,10 @@
       <Project>{37c444d6-bae5-48c9-8d52-ab5da2984fe8}</Project>
       <Name>Ly.ProjectManager.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ly.ProjectManager.Repository\Ly.ProjectManager.Repository.csproj">
+      <Project>{4E135BC9-8C08-4B2E-AC99-08FEA288C809}</Project>
+      <Name>Ly.ProjectManager.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

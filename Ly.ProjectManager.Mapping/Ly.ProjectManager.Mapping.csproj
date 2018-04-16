@@ -38,8 +38,29 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcademicManagement\DefencePersonChargeMap.cs" />
+    <Compile Include="AcademicManagement\DefenseMap.cs" />
+    <Compile Include="AcademicManagement\ProjectDefenceResultMap.cs" />
+    <Compile Include="AcademicManagement\TeamMembersMap.cs" />
+    <Compile Include="AcademicManagement\TeamMembersResultMap.cs" />
+    <Compile Include="ProjectManagement\ProjectMap.cs" />
+    <Compile Include="ProjectManagement\ProjectModuleMap.cs" />
+    <Compile Include="ProjectManagement\ProjectPlanMap.cs" />
+    <Compile Include="ProjectManagement\ProjectTeamMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentWorkerManagement\ClassManageMap.cs" />
+    <Compile Include="StudentWorkerManagement\ClassMap.cs" />
+    <Compile Include="StudentWorkerManagement\GradeMap.cs" />
+    <Compile Include="SystemManagement\AccountRoleMap.cs" />
+    <Compile Include="SystemManagement\DataDictionaryMap.cs" />
+    <Compile Include="SystemManagement\ModuleButtonMap.cs" />
+    <Compile Include="SystemManagement\ModuleMap.cs" />
+    <Compile Include="SystemManagement\OperationLogMap.cs" />
+    <Compile Include="SystemManagement\RoleAuthenticationMap.cs" />
+    <Compile Include="SystemManagement\RoleMap.cs" />
     <Compile Include="UserManagement\AccountMap.cs" />
+    <Compile Include="UserManagement\ClassStudentMap.cs" />
+    <Compile Include="UserManagement\ClassTeacherMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ly.ProjectManager.Domain\Ly.ProjectManager.Domain.csproj">

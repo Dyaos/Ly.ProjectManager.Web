@@ -1,5 +1,6 @@
-﻿using Ly.ProjectManager.Domain._3.Entity;
-using Ly.ProjectManager.Domain._3.IRepository;
+﻿
+using Ly.ProjectManager.Domain._2.Entity;
+using Ly.ProjectManager.Repository._1.IRepository.UserManagerment;
 using Ly.ProjectManger.Application._2.IApplication;
 using System;
 using System.Collections.Generic;

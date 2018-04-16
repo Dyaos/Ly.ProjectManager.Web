@@ -1,5 +1,5 @@
 ﻿using Ly.ProjectManager.Data.Application;
-using Ly.ProjectManager.Domain._3.Entity;
+using Ly.ProjectManager.Domain._2.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

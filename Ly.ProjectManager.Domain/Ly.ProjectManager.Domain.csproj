@@ -46,38 +46,37 @@
     <Compile Include="1.Infrastructure\IDeleteAudited.cs" />
     <Compile Include="1.Infrastructure\IEntity.cs" />
     <Compile Include="1.Infrastructure\IModificationAudited.cs" />
-    <Compile Include="2.IRepository\UserManagerment\IAccountRepository.cs" />
-    <Compile Include="3.Entity\AccountEntity.cs" />
-    <Compile Include="3.Entity\AccountRoleEntity.cs" />
-    <Compile Include="3.Entity\ClassEntity.cs" />
-    <Compile Include="3.Entity\ClassManageEntity.cs" />
-    <Compile Include="3.Entity\ClassTeacherEntity.cs" />
-    <Compile Include="3.Entity\DataDictionaryEntity.cs" />
-    <Compile Include="3.Entity\GradeEntity.cs" />
-    <Compile Include="3.Entity\ModuleButtonEntity.cs" />
-    <Compile Include="3.Entity\ModuleEntity.cs" />
-    <Compile Include="3.Entity\OperationLogEntity.cs" />
-    <Compile Include="3.Entity\ProjectEntity.cs" />
-    <Compile Include="3.Entity\ProjectPlanEntity.cs" />
-    <Compile Include="3.Entity\ProjectSubLeaderEntity.cs" />
-    <Compile Include="3.Entity\ProjectTeam.cs" />
-    <Compile Include="3.Entity\RoleAuthenticationEntity.cs" />
-    <Compile Include="3.Entity\RoleEntity.cs" />
-    <Compile Include="3.Entity\ClassStudentEntity.cs" />
-    <Compile Include="3.Entity\TeamMembersEntity.cs" />
+    <Compile Include="2.Entity\AccountEntity.cs" />
+    <Compile Include="2.Entity\AccountRoleEntity.cs" />
+    <Compile Include="2.Entity\ClassEntity.cs" />
+    <Compile Include="2.Entity\ClassManageEntity.cs" />
+    <Compile Include="2.Entity\ClassStudentEntity.cs" />
+    <Compile Include="2.Entity\ClassTeacherEntity.cs" />
+    <Compile Include="2.Entity\DataDictionaryEntity.cs" />
+    <Compile Include="2.Entity\DefencePersonChargeEntity.cs" />
+    <Compile Include="2.Entity\DefenseEntity.cs" />
+    <Compile Include="2.Entity\GradeEntity.cs" />
+    <Compile Include="2.Entity\ModuleButtonEntity.cs" />
+    <Compile Include="2.Entity\ModuleEntity.cs" />
+    <Compile Include="2.Entity\OperationLogEntity.cs" />
+    <Compile Include="2.Entity\ProjectDefenceResultEntity.cs" />
+    <Compile Include="2.Entity\ProjectEntity.cs" />
+    <Compile Include="2.Entity\ProjectModuleEntity.cs" />
+    <Compile Include="2.Entity\ProjectPlanEntity.cs" />
+    <Compile Include="2.Entity\ProjectTeamEntity.cs" />
+    <Compile Include="2.Entity\RoleAuthenticationEntity.cs" />
+    <Compile Include="2.Entity\RoleEntity.cs" />
+    <Compile Include="2.Entity\TeamMembersEntity.cs" />
+    <Compile Include="2.Entity\TeamMembersResultEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="4.ViewModel\" />
+    <Folder Include="3.Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ly.ProjectManager.Code\Ly.ProjectManager.Code.csproj">
       <Project>{DB19CE03-C307-43FE-A209-08AA4AE10E21}</Project>
       <Name>Ly.ProjectManager.Code</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ly.ProjectManager.Data\Ly.ProjectManager.Data.csproj">
-      <Project>{91c56eec-c76b-4bd5-9216-1f67e7e016a6}</Project>
-      <Name>Ly.ProjectManager.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

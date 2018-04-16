@@ -9,12 +9,12 @@ using Ly.ProjectManager.Domain._2.Entity;
 
 namespace Ly.ProjectManager.Mapping.UserManagement
 {
-    public class AccountMap : EntityTypeConfiguration<AccountEntity>
+    public class ProjectTeamMap : EntityTypeConfiguration<ProjectTeamEntity>
     {
-        public AccountMap()
+        public ProjectTeamMap()
         {
-            this.ToTable("Account");
-            this.HasKey(t => t.accountGuid);
+            this.ToTable("ProjectTeam");
+            this.HasKey(t => t.teamGuid);
         }
     }
 }
