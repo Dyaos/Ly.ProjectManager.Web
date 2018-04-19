@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManger.Application._2.IApplication.UserManagerment
 {
-    public interface IAccountApp : IApplicationBase<AccountEntity>
+    public interface IClassTeacherApp : IApplicationBase<ClassTeacherEntity>
     {
 
     }

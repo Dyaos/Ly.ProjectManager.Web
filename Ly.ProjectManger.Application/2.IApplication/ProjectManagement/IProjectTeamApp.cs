@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ly.ProjectManger.Application._2.IApplication.UserManagerment
+namespace Ly.ProjectManger.Application._2.IApplication.ProjectManagement
 {
-    public interface IAccountApp : IApplicationBase<AccountEntity>
+    public interface IProjectTeamApp : IApplicationBase<ProjectTeamEntity>
     {
 
     }

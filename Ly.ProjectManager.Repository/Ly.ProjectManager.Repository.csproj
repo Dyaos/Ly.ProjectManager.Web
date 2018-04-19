@@ -40,8 +40,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1.IRepository\AcademicManagement\IDefencePersonChargeRepository.cs" />
+    <Compile Include="1.IRepository\AcademicManagement\IDefenceRepository.cs" />
+    <Compile Include="1.IRepository\AcademicManagement\IProjectDefenceResultRepository.cs" />
+    <Compile Include="1.IRepository\AcademicManagement\ITeamMembersRepository.cs" />
+    <Compile Include="1.IRepository\AcademicManagement\ITeamMembersResultRepository.cs" />
+    <Compile Include="1.IRepository\ProjectManagement\IProjectModuleRepository.cs" />
+    <Compile Include="1.IRepository\ProjectManagement\IProjectPlanRepository.cs" />
+    <Compile Include="1.IRepository\ProjectManagement\IProjectRepository.cs" />
+    <Compile Include="1.IRepository\ProjectManagement\IProjectTeamRepository.cs" />
+    <Compile Include="1.IRepository\StudentWorkerManagement\IClassManageRepository.cs" />
+    <Compile Include="1.IRepository\StudentWorkerManagement\IClassRepository.cs" />
+    <Compile Include="1.IRepository\StudentWorkerManagement\IGradeRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IAccountRoleRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IDataDictionaryRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IModuleButtonRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IModuleRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IOperationLogRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IRoleAuthenticationRepository.cs" />
+    <Compile Include="1.IRepository\SystemManagement\IRoleRepository.cs" />
     <Compile Include="1.IRepository\UserManagerment\IAccountRepository.cs" />
-    <Compile Include="2.Repository\AccountRepository.cs" />
+    <Compile Include="1.IRepository\UserManagerment\IClassStudentRepository.cs" />
+    <Compile Include="1.IRepository\UserManagerment\IClassTeacherRepository.cs" />
+    <Compile Include="2.Repository\AcademicManagement\DefencePersonChargeRepository.cs" />
+    <Compile Include="2.Repository\AcademicManagement\DefenceRepository.cs" />
+    <Compile Include="2.Repository\AcademicManagement\ProjectDefenceResultRepository.cs" />
+    <Compile Include="2.Repository\AcademicManagement\TeamMembersRepository.cs" />
+    <Compile Include="2.Repository\AcademicManagement\TeamMembersResultRepository.cs" />
+    <Compile Include="2.Repository\ProjectManagement\ProjectModuleRepository.cs" />
+    <Compile Include="2.Repository\ProjectManagement\ProjectPlanRepository.cs" />
+    <Compile Include="2.Repository\ProjectManagement\ProjectRepository.cs" />
+    <Compile Include="2.Repository\ProjectManagement\ProjectTeamRepository.cs" />
+    <Compile Include="2.Repository\StudentWorkerManagement\ClassManageRepository.cs" />
+    <Compile Include="2.Repository\StudentWorkerManagement\ClassRepository.cs" />
+    <Compile Include="2.Repository\StudentWorkerManagement\GradeRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\AccountRoleRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\DataDictionaryRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\ModuleButtonRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\ModuleRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\OperationLogRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\RoleAuthenticationRepository.cs" />
+    <Compile Include="2.Repository\SystemManagement\RoleRepository.cs" />
+    <Compile Include="2.Repository\UserManagerment\AccountRepository.cs" />
+    <Compile Include="2.Repository\UserManagerment\ClassStudentRepository.cs" />
+    <Compile Include="2.Repository\UserManagerment\ClassTeacherRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

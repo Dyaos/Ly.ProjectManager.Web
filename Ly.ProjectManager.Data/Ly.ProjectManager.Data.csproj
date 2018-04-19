@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CommonRepositoryBase.cs" />
+    <Compile Include="Repository\ICommonRepositoryBase.cs" />
     <Compile Include="Repository\IRepositoryBase.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
   </ItemGroup>
