@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Ly.ProjectManager.Web.Areas.UserManagerment.Controllers
+namespace Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers
 {
     /// <summary>
-    /// 讲师
+    /// 团队成员
     /// </summary>
-    public class LecturerController : ControllerBase
+    public class TeamMembersController : ControllerBase
     {
        
     }

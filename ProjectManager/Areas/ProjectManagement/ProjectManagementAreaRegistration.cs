@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Ly.ProjectManager.Web.Areas.UserManagement
+namespace Ly.ProjectManager.Web.Areas.ProjectManagement
 {
-    public class UserManagementAreaRegistration : AreaRegistration
+    public class ProjectManagementAreaRegistration : AreaRegistration
     {
-        public override string AreaName => "UserManagement";
+        public override string AreaName => "ProjectManagement";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

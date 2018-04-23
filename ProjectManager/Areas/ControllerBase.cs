@@ -13,5 +13,15 @@ namespace Ly.ProjectManager.Web.Areas
         {
             return View();
         }
+
+        public ActionResult Form()
+        {
+            return View();
+        }
+
+        public ActionResult Details()
+        {
+            return View();
+        }
     }
 }

@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1.Infrastructure\IApplicationAsyncBase.cs" />
     <Compile Include="1.Infrastructure\IApplicationBase.cs" />
+    <Compile Include="1.Infrastructure\ICommandOperationAsync.cs" />
     <Compile Include="1.Infrastructure\ICommandOperation.cs" />
     <Compile Include="2.IApplication\AcademicManagement\IDefenceApp.cs" />
     <Compile Include="2.IApplication\AcademicManagement\IDefencePersonChargeApp.cs" />
