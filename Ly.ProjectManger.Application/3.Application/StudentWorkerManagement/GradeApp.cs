@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ly.ProjectManger.Application._3.IApplication.StudentWorkerManagement
+namespace Ly.ProjectManger.Application._3.Application.StudentWorkerManagement
 {
     public class GradeApp : IGradeApp
     {

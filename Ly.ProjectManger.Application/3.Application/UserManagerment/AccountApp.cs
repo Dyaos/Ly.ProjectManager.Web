@@ -2,14 +2,13 @@
 using Ly.ProjectManager.Domain._2.Entity;
 using Ly.ProjectManager.Repository._1.IRepository.UserManagerment;
 using Ly.ProjectManger.Application._2.IApplication.UserManagerment;
-using Ly.ProjectManger.Application._3.Application.UserManagerment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ly.ProjectManger.Application._3.Application
+namespace Ly.ProjectManger.Application._3.Application.UserManagerment
 {
     public class AccountApp : IAccountApp
     {

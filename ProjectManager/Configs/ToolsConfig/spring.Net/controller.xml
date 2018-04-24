@@ -1,6 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects xmlns="http://www.springframework.net">
+  <!--用户管理-->
   <object type="Ly.ProjectManager.Web.Controllers.LoginController,Ly.ProjectManager.Web" singleton="false">
     <constructor-arg index="0" ref="AccountApp"/>
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.UserManagerment.Controllers.InstructorController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.UserManagerment.Controllers.LecturerController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.UserManagerment.Controllers.StudentController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+
+  <!--系统管理-->
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.AccountRoleController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.DataDictionaryController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.ModuleButtonController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.ModuleController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.OperationLogController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.RoleAuthenticationController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+
+
+  <!--学工管理-->
+  <object type="Ly.ProjectManager.Web.Areas.StudentWorkerManagement.Controllers.ClassController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.StudentWorkerManagement.Controllers.ClassManageController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.StudentWorkerManagement.Controllers.GradeController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+
+  <!--项目管理-->
+  <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectModuleController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectPlanController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectTeamController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+
+  <!--学术管理-->
+  <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.DefenceController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.DefencePersonChargeController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.ProjectDefenceResultController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.TeamMembersController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.TeamMembersResultController,Ly.ProjectManager.Web" singleton="false">
   </object>
 </objects>

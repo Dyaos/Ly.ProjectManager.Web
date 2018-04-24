@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ly.ProjectManger.Application._3.IApplication.UserManagerment
+namespace Ly.ProjectManger.Application._3.Application.UserManagerment
 {
     public class ClassStudentApp : IClassStudentApp
     {

@@ -214,7 +214,9 @@
     <Content Include="Configs\ToolsConfig\database.config" />
     <Content Include="Configs\ToolsConfig\spring.Net\application.xml" />
     <Content Include="Configs\ToolsConfig\spring.Net\repository.xml" />
-    <Content Include="Configs\ToolsConfig\spring.Net\controller.xml" />
+    <Content Include="Configs\ToolsConfig\spring.Net\controller.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="StaticResources\Include\animate\animate.css" />
     <Content Include="StaticResources\Include\bootstrap-select\css\bootstrap-select.css" />
     <Content Include="StaticResources\Include\bootstrap-select\css\bootstrap-select.min.css" />
@@ -564,12 +566,16 @@
       <Project>{DB19CE03-C307-43FE-A209-08AA4AE10E21}</Project>
       <Name>Ly.ProjectManager.Code</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ly.ProjectManager.Data\Ly.ProjectManager.Data.csproj">
+      <Project>{91c56eec-c76b-4bd5-9216-1f67e7e016a6}</Project>
+      <Name>Ly.ProjectManager.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ly.ProjectManager.Repository\Ly.ProjectManager.Repository.csproj">
       <Project>{4e135bc9-8c08-4b2e-ac99-08fea288c809}</Project>
       <Name>Ly.ProjectManager.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ly.ProjectManger.Application\Ly.ProjectManager.Application.csproj">
-      <Project>{FFE12E27-2DAF-437B-9A04-76D891035BA2}</Project>
+      <Project>{ffe12e27-2daf-437b-9a04-76d891035ba2}</Project>
       <Name>Ly.ProjectManager.Application</Name>
     </ProjectReference>
   </ItemGroup>

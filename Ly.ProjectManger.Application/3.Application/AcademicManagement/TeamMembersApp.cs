@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ly.ProjectManger.Application._3.Application.UserManagerment
+namespace Ly.ProjectManger.Application._3.Application.AcademicManagement
 {
     public class TeamMembersApp : ITeamMembersApp
     {

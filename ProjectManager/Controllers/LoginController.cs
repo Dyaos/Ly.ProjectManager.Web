@@ -11,10 +11,10 @@ namespace Ly.ProjectManager.Web.Controllers
 {
     public class LoginController : Controller
     {
-        private IAccountApp AccountApp;
-        public LoginController(IAccountApp AccountApp)
+        private IAccountApp accountApp;
+        public LoginController(IAccountApp accountApp)
         {
-            this.AccountApp = AccountApp;
+            this.accountApp = accountApp;
         }
         // GET: Login
         public ActionResult Index()

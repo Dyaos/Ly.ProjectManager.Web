@@ -1,6 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects xmlns="http://www.springframework.net">
-  <object name="AccountApp" type="Ly.ProjectManger.Application._3.Application.IAccountApp,Ly.ProjectManger.Application" singleton="false">
-    <constructor-arg index="0" ref="TeahcerRepository"/>
+  <!--用户管理-->
+  <object name="AccountApp" type="Ly.ProjectManger.Application._3.Application.UserManagerment.AccountApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="AccountRepository"/>
+  </object>
+  <object name="ClassStudentApp" type="Ly.ProjectManger.Application._3.Application.UserManagerment.ClassStudentApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ClassTeacherApp" type="Ly.ProjectManger.Application._3.Application.UserManagerment.ClassTeacherApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+
+  <!--系统管理-->
+  <object name="AccountRoleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.AccountRoleApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="DataDictionaryApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.DataDictionaryApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ModuleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.ModuleApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ModuleButtonApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.ModuleButtonApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="OperationLogApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.OperationLogApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="RoleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.RoleApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="RoleAuthenticationApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.RoleAuthenticationApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+
+  <!--学工管理-->
+  <object name="ClassApp" type="Ly.ProjectManger.Application._3.Application.StudentWorkerManagement.ClassApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ClassManageApp" type="Ly.ProjectManger.Application._3.Application.StudentWorkerManagement.ClassManageApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="GradeApp" type="Ly.ProjectManger.Application._3.Application.StudentWorkerManagement.GradeApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+
+  <!--项目管理-->
+  <object name="ProjectApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ProjectModuleApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectModuleApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ProjectPlanApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectPlanApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ProjectTeamApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectTeamApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+
+  <!--学术管理-->
+  <object name="DefenceApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.DefenceApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="DefencePersonChargeApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.DefencePersonChargeApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="ProjectDefenceResultApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.ProjectDefenceResultApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="TeamMembersApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.TeamMembersApp,Ly.ProjectManger.Application" singleton="false">
+  </object>
+  <object name="TeamMembersResultApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.TeamMembersResultApp,Ly.ProjectManger.Application" singleton="false">
   </object>
 </objects>

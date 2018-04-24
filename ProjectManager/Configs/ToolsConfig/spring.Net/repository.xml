@@ -1,5 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <objects xmlns="http://www.springframework.net">
-  <object name="TeahcerRepository" type="Ly.ProjectManager.Repository.UserManagerment.TeahcerRepository,Ly.ProjectManager.Repository" singleton="false">
+  <!--用户管理-->
+  <object name="AccountRepository" type="Ly.ProjectManager.Repository._2.Repository.UserManagerment.AccountRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="TeahcerRepository" type="Ly.ProjectManager.Repository._2.Repository.UserManagerment.ClassTeacherRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="StudentRepository" type="Ly.ProjectManager.Repository._2.Repository.UserManagerment.ClassStudentRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+
+  <!--系统管理-->
+  <object name="AccountRoleRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.AccountRoleRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="DataDictionaryRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.DataDictionaryRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="ModuleButtonRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.ModuleButtonRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="ModuleRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.ModuleRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="OperationLogRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.OperationLogRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="RoleAuthenticationRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.RoleAuthenticationRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="RoleRepository" type="Ly.ProjectManager.Repository._2.Repository.SystemManagement.RoleRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+
+  <!--学工管理-->
+  <object name="ClassManageRepository" type="Ly.ProjectManager.Repository._2.Repository.StudentWorkerManagement.ClassManageRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="ClassRepository" type="Ly.ProjectManager.Repository._2.Repository.StudentWorkerManagement.ClassRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="GradeRepository" type="Ly.ProjectManager.Repository._2.Repository.StudentWorkerManagement.GradeRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+
+  <!--项目管理-->
+  <object name="ProjectModuleRepository" type="Ly.ProjectManager.Repository._2.Repository.ProjectManagement.ProjectModuleRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="ProjectPlanRepository" type="Ly.ProjectManager.Repository._2.Repository.ProjectManagement.ProjectPlanRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="ProjectRepository" type="Ly.ProjectManager.Repository._2.Repository.ProjectManagement.ProjectRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="ProjectTeamRepository" type="Ly.ProjectManager.Repository._2.Repository.ProjectManagement.ProjectTeamRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+
+  <!--学术管理-->
+  <object name="DefencePersonChargeRepository" type="Ly.ProjectManager.Repository._2.Repository.AcademicManagement.DefencePersonChargeRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="DefenceRepository" type="Ly.ProjectManager.Repository._2.Repository.AcademicManagement.DefenceRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="TeamMembersRepository" type="Ly.ProjectManager.Repository._2.Repository.AcademicManagement.TeamMembersRepository,Ly.ProjectManager.Repository" singleton="false">
+  </object>
+  <object name="TeamMembersResultRepository" type="Ly.ProjectManager.Repository._2.Repository.AcademicManagement.TeamMembersResultRepository,Ly.ProjectManager.Repository" singleton="false">
   </object>
 </objects>
