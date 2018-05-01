@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Data.DBContext
 {
-    class ProjectManagerDbContext : DbContext
+    public class ProjectManagerDbContext : DbContext
     {
         public ProjectManagerDbContext() : base("ProjectManagerDb")
         {
@@ -47,22 +47,23 @@ namespace Ly.ProjectManager.Data.DBContext
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //获取映射文件名
-            string assembleFileName = Assembly.GetExecutingAssembly().CodeBase.Replace("Ly.ProjectManager.Data", "Ly.ProjectManager.Mapping").Replace("file:///", "");
-            //加载组件
-            Assembly asm = Assembly.LoadFile(assembleFileName);
-            //获取继承EntityTypeConfiguration Class 集合
-            var typesToRegister = asm.GetTypes()
-             .Where(type => !String.IsNullOrEmpty(type.Namespace))
-            .Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
-            foreach (var type in typesToRegister)
-            {
-                dynamic configurationInstance = Activator.CreateInstance(type);
-                modelBuilder.Configurations.Add(configurationInstance);
-            }
-            base.OnModelCreating(modelBuilder);
+            ////获取映射文件名
+            //string assembleFileName = Assembly.GetExecutingAssembly().CodeBase.Replace("Ly.ProjectManager.Data", "Ly.ProjectManager.Mapping").Replace("file:///", "");
+            ////加载组件
+            //Assembly asm = Assembly.LoadFile(assembleFileName);
+            ////获取继承EntityTypeConfiguration Class 集合
+            //var typesToRegister = asm.GetTypes()
+            // .Where(type => !String.IsNullOrEmpty(type.Namespace))
+            //.Where(type => type.BaseType != null && type.BaseType.IsGenericType && type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
+            //foreach (var type in typesToRegister)
+            //{
+            //    dynamic configurationInstance = Activator.CreateInstance(type);
+            //    modelBuilder.Configurations.Add(configurationInstance);
+            //}
+
             //删除拓展名
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

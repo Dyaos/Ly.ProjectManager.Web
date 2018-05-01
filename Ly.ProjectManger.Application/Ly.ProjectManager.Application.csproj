@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ly.ProjectManger.Application</RootNamespace>
     <AssemblyName>Ly.ProjectManger.Application</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -94,6 +96,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Ly.ProjectManager.Code\Ly.ProjectManager.Code.csproj">
+      <Project>{DB19CE03-C307-43FE-A209-08AA4AE10E21}</Project>
+      <Name>Ly.ProjectManager.Code</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ly.ProjectManager.Data\Ly.ProjectManager.Data.csproj">
       <Project>{91C56EEC-C76B-4BD5-9216-1F67E7E016A6}</Project>
       <Name>Ly.ProjectManager.Data</Name>
@@ -101,6 +107,10 @@
     <ProjectReference Include="..\Ly.ProjectManager.Domain\Ly.ProjectManager.Domain.csproj">
       <Project>{37c444d6-bae5-48c9-8d52-ab5da2984fe8}</Project>
       <Name>Ly.ProjectManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ly.ProjectManager.Infrastructure\Ly.ProjectManager.Infrastructure.csproj">
+      <Project>{9624724F-A11D-4C97-87F0-D298098C22A1}</Project>
+      <Name>Ly.ProjectManager.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ly.ProjectManager.Repository\Ly.ProjectManager.Repository.csproj">
       <Project>{4E135BC9-8C08-4B2E-AC99-08FEA288C809}</Project>

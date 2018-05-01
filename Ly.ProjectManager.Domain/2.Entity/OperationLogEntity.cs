@@ -15,6 +15,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
     [Table("OperationLog")]
     public class OperationLogEntity : IEntity<OperationLogEntity>, ICreationAudited
     {
+
         //自定义属性
         [Key]
         public string logGuid { get; set; }
@@ -25,6 +26,22 @@ namespace Ly.ProjectManager.Domain._2.Entity
         /// 日志类型 Login 登录 CURD 增删改查 Error
         /// </summary>
         public string logType { get; set; }
+        /// <summary>
+        /// 日志等级
+        /// </summary>
+        public string logLevel { get; set; }
+        /// <summary>
+        /// 线程
+        /// </summary>
+        public string logThread { get; set; }
+        /// <summary>
+        /// 日志名称
+        /// </summary>
+        public string logName { get; set; }
+        /// <summary>
+        /// 操作人Ip
+        /// </summary>
+        public string operationIP { get; set; }
         //被操作的表格
         public string operationTable { get; set; }
         /// <summary>
@@ -42,6 +59,6 @@ namespace Ly.ProjectManager.Domain._2.Entity
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }
-      
+
     }
 }

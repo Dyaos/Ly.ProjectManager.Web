@@ -1,6 +1,7 @@
 ﻿using Ly.ProjectManager.Domain._1.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace Ly.ProjectManager.Domain._2.Entity
     [Table("ProjectPlan")]
     public class ProjectPlanEntity : IEntity<ProjectPlanEntity>, ICreationAudited, IModificationAudited, IDeleteAudited, ICommonProperty
     {
+        public ProjectPlanEntity()
+        {
+            this.isEnabled = true;
+        }
         [Key]
         public string planGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
@@ -25,7 +30,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
         /// <summary>
         /// 项目完结状态
         /// </summary>
-        public bool? planStatus { get; set; }
+        public bool planStatus { get; set; }
         /// <summary>
         /// 目标专业
         /// </summary>
@@ -43,7 +48,9 @@ namespace Ly.ProjectManager.Domain._2.Entity
         public string deleteUserId { get; set; }
         public DateTime? deleteDateTime { get; set; }
         public int? sortCode { get; set; }
-        public bool? isEnabled { get; set; }
+        [DefaultValue(true)]
+        [Required]
+        public bool isEnabled { get; set; }
         public string remarks { get; set; }
 
         //外键属性

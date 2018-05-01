@@ -1,18 +1,146 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+@section lyStyle{
+    <link href="~/StaticResources/Include/wizard/wizard.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/wdtree/tree.css" rel="stylesheet" />
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script src="~/StaticResources/Include/wizard/wizard.js"></script>
+    <script src="~/StaticResources/Include/wdtree/tree.js"></script>
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                bindBootstrapValidator();
+                $("#permissionTree").treeview({
+                    height: 400,
+                    showcheck: true,
+                    url: "/SystemManagement/RoleAuthentication/GetPermissionTree",
+                    param: { roleId: details.getKeyValue() }
+                });
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    <div> 
+                $('#wizard').wizard().on('change', function (e, data) {
+                    var $finish = $("#btn_finish");
+                    var $next = $("#btn_next");
+                   
+                    if (data.direction == "next") {
+                        switch (data.step) {
+                            case 1:
+                                if (!$('#frmModule').formValid()) {
+                                    return false;
+                                }
+                                $finish.show();
+                                $next.hide();
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        $finish.hide();
+                        $next.show();
+                    }
+                });
+
+                $("#btn_finish").click(function () {
+                    var postData = $("#frmModule").formSerialize();
+                    postData["permissionIds"] = String($("#permissionTree").getCheckedNodes());
+                    $.submitForm({
+                        url: "/SystemManagement/Role/SubmitForm?keyValue=" + details.getKeyValue(),
+                        param: postData,
+                        success: function () {
+                            $.currentWindow().$("#gridList").trigger("reloadGrid");
+                        }
+                    });
+                });
+            },
+            ajaxData: function () {
+                details.initControl();
+                if (!!details.getKeyValue()) {
+                    $.ajax({
+                        url: "/SystemManagement/Role/GetFormJson",
+                        data: { keyValue: details.getKeyValue() },
+                        method: "POST",
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#frmModule").formSerialize(data);
+                        }
+                    })
+                }
+            },
+            submitForm: function () {
+                if (!$("#frmModule").formValid()) {
+                    return false;
+                }
+                $.submitForm({
+                    url: "/SystemManagement/Role/SubmitForm?keyValue=" + details.getKeyValue(),
+                    param: $("#frmModule").formSerialize(),
+                    success: function () {
+                        $.currentWindow().$("#gridList").resetSelection();
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                })
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
+}
+
+<form id="frmModule" class="validate-form">
+    <div class="widget-body">
+        <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
+            <ul class="steps">
+                <li data-target="#step-1" class="active"><span class="step">1</span>角色信息<span class="chevron"></span></li>
+                <li data-target="#step-2"><span class="step">2</span>功能权限<span class="chevron"></span></li>
+            </ul>
+        </div>
+        <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
+            <div class="step-pane active" id="step-1" style="margin: 10px; margin-bottom: 0px;">
+                <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
+                    <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
+                    请填写角色信息，用于创建或修改角色信息！
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">表单信息</h3>
+                    </div>
+                    <div class="panel-body" style="width: 98%;">
+                        <div class="row">
+                            <div class="form-group clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label class="sr-only" for="roleName">角色名称</label>
+                                <input id="roleName" name="roleName" type="text" class="form-control" placeholder="请输入角色名称" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label class="sr-only" for="roleLv">角色等级</label>
+                                <input id="roleLv" name="roleLv" type="number" max="5" min="1" class="form-control" required placeholder="请输入角色等级（示例：1,2,3...）" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <label class="sr-only" for="remarks">备注</label>
+                                <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-pane" id="step-2">
+                <div id="permissionTree"></div>
+            </div>
+        </div>
+        <div class="form-button" id="wizard-actions">
+            <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a>
+            <a id="btn_next" class="btn btn-default btn-next">下一步</a>
+            <a id="btn_finish" class="btn btn-default" style="display: none;">完成</a>
+        </div>
     </div>
-</body>
-</html>
-*
+</form>

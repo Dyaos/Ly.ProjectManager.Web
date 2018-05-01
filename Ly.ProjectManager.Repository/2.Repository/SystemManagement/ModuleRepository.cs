@@ -11,5 +11,6 @@ namespace Ly.ProjectManager.Repository._2.Repository.SystemManagement
 {
     public class ModuleRepository : RepositoryBase<ModuleEntity>, IModuleRepository
     {
+
     }
 }

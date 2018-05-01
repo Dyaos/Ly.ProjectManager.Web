@@ -6,12 +6,8 @@ using System.Web.Mvc;
 
 namespace Ly.ProjectManager.Web.Areas.UserManagerment.Controllers
 {
-    public class InstructorController : Controller
+    public class InstructorController : ControllerBase
     {
-        // GET: UserManagerment/Instructor
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

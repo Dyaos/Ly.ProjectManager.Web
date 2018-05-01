@@ -58,25 +58,25 @@
                         <form class="login-form validate-form" id="form-login">
                             <div class="form-group">
                                 <label class="sr-only" for="identity">选择身份</label>
-                                <select class="form-control selectpicker" id="identity" name="userType">
-                                    <option data-value="3">学生</option>
+                                <select class="form-control selectpicker" id="accountType" name="userType">
+                                    <option data-value="3" value="3">学生</option>
                                     <option data-divider="true"></option>
-                                    <option data-value="1">教师</option>
-                                    <option data-value="2">管理员</option>
+                                    <option data-value="1" value="2">教师</option>
+                                    <option data-value="2" value="1">管理员</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="username">用户名</label>
-                                <input type="text" class="form-control" id="username" name="loginName" placeholder="请输入用户名" required>
+                                <input type="text" class="form-control" id="cardNo" name="cardNo" placeholder="请输入用户名" required>
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="password">密码</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" required>
+                                <input type="password" class="form-control" id="cardPwd" name="cardPwd" placeholder="请输入密码" required>
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="password">验证码</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="validCode" placeholder="请输入验证码" required>
+                                    <input type="text" class="form-control" name="validCode" id="validCode" placeholder="请输入验证码" required>
                                     <a class="input-group-addon padding-0 reload-vify" href="javascript:;">
                                         <img src="/Login/VerificationCode" height="40">
                                     </a>
@@ -84,6 +84,9 @@
                             </div>
                             <button type="button" id="btn-login" class="btn btn-primary btn-block margin-top-30">立即登录</button>
                         </form>
+                        <div class="row">
+                            <div class="login-tips"></div>
+                        </div>
                     </div>
                 </div>
                 <footer class="page-copyright">
@@ -102,6 +105,8 @@
     <script src="~/StaticResources/Include/bootstrap-select/js/bootstrap-select.js"></script>
     <script src="~/StaticResources/Include/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
     <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
+    <script src="~/StaticResources/Include/jquery-cookie/jquery.cookie.js"></script>
+    <script src="~/StaticResources/Include/jquery-md5/jquery.md5.js"></script>
     <script src="~/StaticResources/Web/js/login.js"></script>
 </body>
 

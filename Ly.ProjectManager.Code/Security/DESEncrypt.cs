@@ -1,21 +1,20 @@
-﻿
-
-
-
-
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Ly.ProjectManager.Code
+namespace Ly.ProjectManage.Code.Security
 {
+
     /// <summary>
     /// DES加密、解密帮助类
     /// </summary>
     public class DESEncrypt
     {
-        private static string DESKey = "nfine_desencrypt_2016";
+        private static string DESKey = "ly_dyaos";
 
         #region ========加密========
         /// <summary>
@@ -35,21 +34,37 @@ namespace Ly.ProjectManager.Code
         /// <returns></returns> 
         public static string Encrypt(string Text, string sKey)
         {
-            DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-            byte[] inputByteArray;
-            inputByteArray = Encoding.Default.GetBytes(Text);
-            des.Key = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            des.IV = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
-            cs.Write(inputByteArray, 0, inputByteArray.Length);
-            cs.FlushFinalBlock();
-            StringBuilder ret = new StringBuilder();
-            foreach (byte b in ms.ToArray())
+            try
             {
-                ret.AppendFormat("{0:X2}", b);
+                byte[] btKey = Encoding.UTF8.GetBytes(sKey);
+
+                byte[] btIV = Encoding.UTF8.GetBytes(sKey);
+
+                DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    byte[] inData = Encoding.UTF8.GetBytes(Text);
+                    try
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, des.CreateEncryptor(btKey, btIV), CryptoStreamMode.Write))
+                        {
+                            cs.Write(inData, 0, inData.Length);
+
+                            cs.FlushFinalBlock();
+                        }
+
+                        return Convert.ToBase64String(ms.ToArray());
+                    }
+                    catch(Exception ex)
+                    {
+                        return Text;
+                    }
+                }
             }
-            return ret.ToString();
+            catch { }
+
+            return "DES加密出错";
         }
 
         #endregion
@@ -79,23 +94,31 @@ namespace Ly.ProjectManager.Code
         /// <returns></returns> 
         public static string Decrypt(string Text, string sKey)
         {
+            byte[] btKey = Encoding.UTF8.GetBytes(sKey);
+
+            byte[] btIV = Encoding.UTF8.GetBytes(sKey);
+
             DESCryptoServiceProvider des = new DESCryptoServiceProvider();
-            int len;
-            len = Text.Length / 2;
-            byte[] inputByteArray = new byte[len];
-            int x, i;
-            for (x = 0; x < len; x++)
+
+            using (MemoryStream ms = new MemoryStream())
             {
-                i = Convert.ToInt32(Text.Substring(x * 2, 2), 16);
-                inputByteArray[x] = (byte)i;
+                byte[] inData = Convert.FromBase64String(Text);
+                try
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(btKey, btIV), CryptoStreamMode.Write))
+                    {
+                        cs.Write(inData, 0, inData.Length);
+
+                        cs.FlushFinalBlock();
+                    }
+
+                    return Encoding.UTF8.GetString(ms.ToArray());
+                }
+                catch
+                {
+                    return Text;
+                }
             }
-            des.Key = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            des.IV = ASCIIEncoding.ASCII.GetBytes(System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(sKey, "md5").Substring(0, 8));
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
-            cs.Write(inputByteArray, 0, inputByteArray.Length);
-            cs.FlushFinalBlock();
-            return Encoding.Default.GetString(ms.ToArray());
         }
 
         #endregion

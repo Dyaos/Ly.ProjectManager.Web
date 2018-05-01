@@ -16,7 +16,7 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
         public void Create()
         {
             var entity = this as ICreationAudited;
-            var LoginInfo = /*OperatorProvider.Provider.GetCurrent() ?? */new OperatorModel() { UserId = Common.GuId() };
+            var LoginInfo = OperatorProvider.Provider.GetCurrent();
             if (LoginInfo != null)
             {
                 entity.creatorUserId = LoginInfo.UserId;
@@ -31,7 +31,7 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
         public void Modify(string keyValue)
         {
             var entity = this as IModificationAudited;
-            var LoginInfo = /*OperatorProvider.Provider.GetCurrent() ?? */new OperatorModel() { UserId = Common.GuId() };
+            var LoginInfo = OperatorProvider.Provider.GetCurrent();
             if (LoginInfo != null)
             {
                 entity.lastModifyUserId = LoginInfo.UserId;
@@ -46,7 +46,7 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
         public void Remove(string keyValue)
         {
             var entity = this as IDeleteAudited;
-            var LoginInfo = /*OperatorProvider.Provider.GetCurrent() ?? */new OperatorModel() { UserId = Common.GuId() };
+            var LoginInfo = OperatorProvider.Provider.GetCurrent();
             if (LoginInfo != null)
             {
                 entity.deleteUserId = LoginInfo.UserId;

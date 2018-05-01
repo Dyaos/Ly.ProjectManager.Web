@@ -3,10 +3,16 @@
   <!--用户管理-->
   <object type="Ly.ProjectManager.Web.Controllers.LoginController,Ly.ProjectManager.Web" singleton="false">
     <constructor-arg index="0" ref="AccountApp"/>
+    <constructor-arg index="1" ref="OperationLogApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.UserManagerment.Controllers.InstructorController,Ly.ProjectManager.Web" singleton="false">
+
   </object>
   <object type="Ly.ProjectManager.Web.Areas.UserManagerment.Controllers.LecturerController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="AccountApp"/>
+    <constructor-arg index="1" ref="ClassTeacherApp"/>
+    <constructor-arg index="2" ref="AccountRoleApp"/>
+    <constructor-arg index="3" ref="RoleApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.UserManagerment.Controllers.StudentController,Ly.ProjectManager.Web" singleton="false">
   </object>
@@ -17,12 +23,20 @@
   <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.DataDictionaryController,Ly.ProjectManager.Web" singleton="false">
   </object>
   <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.ModuleButtonController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="ModuleButtonApp"/>
+    <constructor-arg index="1" ref="ModuleApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.ModuleController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="ModuleApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.OperationLogController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="OperationLogApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.RoleAuthenticationController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="RoleAuthenticationApp"/>
+  </object>
+  <object type="Ly.ProjectManager.Web.Areas.SystemManagement.Controllers.RoleController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="RoleApp"/>
   </object>
 
 
@@ -54,5 +68,10 @@
   <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.TeamMembersController,Ly.ProjectManager.Web" singleton="false">
   </object>
   <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.TeamMembersResultController,Ly.ProjectManager.Web" singleton="false">
+  </object>
+
+  <!--公用-->
+  <object type="Ly.ProjectManager.Web.Controllers.ClientDataController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="RoleAuthenticationApp"/>
   </object>
 </objects>

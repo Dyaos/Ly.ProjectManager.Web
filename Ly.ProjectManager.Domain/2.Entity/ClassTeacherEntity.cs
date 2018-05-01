@@ -22,7 +22,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
         public int teacherIdentity { get; set; }
         public string teacherName { get; set; }
         public int teacherType { get; set; }
-        public int accountInfoGuid { get; set; }
+        public string accountInfoGuid { get; set; }
         //公共属性
         public string creatorUserId { get; set; }
         public DateTime? creatorDateTime { get; set; }

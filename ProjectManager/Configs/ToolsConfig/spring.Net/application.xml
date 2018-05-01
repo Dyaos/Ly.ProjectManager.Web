@@ -3,26 +3,38 @@
   <!--用户管理-->
   <object name="AccountApp" type="Ly.ProjectManger.Application._3.Application.UserManagerment.AccountApp,Ly.ProjectManger.Application" singleton="false">
     <constructor-arg index="0" ref="AccountRepository"/>
+    <constructor-arg index="1" ref="CommonRepository"/>
   </object>
   <object name="ClassStudentApp" type="Ly.ProjectManger.Application._3.Application.UserManagerment.ClassStudentApp,Ly.ProjectManger.Application" singleton="false">
   </object>
   <object name="ClassTeacherApp" type="Ly.ProjectManger.Application._3.Application.UserManagerment.ClassTeacherApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="TeahcerRepository"/>
   </object>
 
   <!--系统管理-->
   <object name="AccountRoleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.AccountRoleApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="AccountRoleRepository"/>
   </object>
   <object name="DataDictionaryApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.DataDictionaryApp,Ly.ProjectManger.Application" singleton="false">
   </object>
   <object name="ModuleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.ModuleApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="ModuleRepository"/>
   </object>
   <object name="ModuleButtonApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.ModuleButtonApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="ModuleButtonRepository"/>
   </object>
   <object name="OperationLogApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.OperationLogApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="OperationLogRepository"/>
   </object>
   <object name="RoleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.RoleApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="RoleRepository"/>
+    <constructor-arg index="1" ref="RoleAuthenticationApp"/>
   </object>
   <object name="RoleAuthenticationApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.RoleAuthenticationApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="ModuleApp"/>
+    <constructor-arg index="1" ref="ModuleButtonApp"/>
+    <constructor-arg index="2" ref="RoleRepository"/>
+    <constructor-arg index="3" ref="RoleAuthenticationRepository"/>
   </object>
 
   <!--学工管理-->

@@ -1,8 +1,5 @@
-﻿
-
-
-
-
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace Ly.ProjectManager.Code
 {
@@ -19,18 +16,20 @@ namespace Ly.ProjectManager.Code
         /// <returns></returns>
         public static string md5(string str, int code)
         {
+            string pwd = null;
+            MD5 m = MD5.Create();
             string strEncrypt = string.Empty;
+
+            byte[] s = m.ComputeHash(Encoding.Unicode.GetBytes(str));
+            for (int i = 0; i < s.Length; i++)
+            {
+                pwd = pwd + s[i].ToString("X");
+            }
             if (code == 16)
             {
-                strEncrypt = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5").Substring(8, 16);
+                pwd = pwd.Substring(8, 16);
             }
-
-            if (code == 32)
-            {
-                strEncrypt = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
-            }
-
-            return strEncrypt;
+            return pwd;
         }
     }
 }

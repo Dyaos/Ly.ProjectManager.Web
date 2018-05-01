@@ -13,11 +13,11 @@ namespace Ly.ProjectManager.Data.Application
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
-        void SubmitFormAsync(TEntity entity, string keyValue);
+        Task<int> SubmitFormAsync(TEntity entity, string keyValue);
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="keyValue"></param>
-        void DeleteFormAsync(string keyValue);
+        Task<int> DeleteFormAsync(string keyValue);
     }
 }

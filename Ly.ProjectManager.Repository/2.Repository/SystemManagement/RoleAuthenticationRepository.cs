@@ -11,5 +11,24 @@ namespace Ly.ProjectManager.Repository._2.Repository.SystemManagement
 {
     public class RoleAuthenticationRepository : RepositoryBase<RoleAuthenticationEntity>, IRoleAuthenticationRepository
     {
+        public async Task<int> SubmitFormAsync(List<RoleAuthenticationEntity> entities, string keyValue)
+        {
+            using (var dbContext = BeginTrans())
+            {
+                Delete(c => c.authRoleGuid == keyValue);
+                Insert(entities);
+                return await dbContext.CommitAsync();
+            }
+        }
+
+        public void SubmitForm(List<RoleAuthenticationEntity> entities, string keyValue)
+        {
+            using (var dbContext = BeginTrans())
+            {
+                Delete(c => c.authRoleGuid == keyValue);
+                Insert(entities);
+                dbContext.Commit();
+            }
+        }
     }
 }

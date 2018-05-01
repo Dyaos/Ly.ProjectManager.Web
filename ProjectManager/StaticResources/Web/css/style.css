@@ -7808,14 +7808,14 @@ body.skin-3 {
 
 /*GO HOME*/
 
-.gohome {
+.add-user {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 100;
 }
 
-.gohome a {
+.add-user a {
     height: 38px;
     width: 38px;
     display: block;
@@ -7827,7 +7827,7 @@ body.skin-3 {
     opacity: .5;
 }
 
-.gohome a:hover {
+.add-user a:hover {
     opacity: 1;
 }
 

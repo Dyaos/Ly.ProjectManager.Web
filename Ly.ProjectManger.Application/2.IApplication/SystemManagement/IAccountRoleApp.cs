@@ -10,6 +10,6 @@ namespace Ly.ProjectManger.Application._2.IApplication.SystemManagement
 {
     public interface IAccountRoleApp : IApplicationBase<AccountRoleEntity>
     {
-
+      
     }
 }

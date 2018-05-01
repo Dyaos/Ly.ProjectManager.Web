@@ -15,6 +15,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
     [Table("ClassManage")]
     public class ClassManageEntity : IEntity<ClassManageEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
     {
+   
         [Key]
         public string classManageGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]

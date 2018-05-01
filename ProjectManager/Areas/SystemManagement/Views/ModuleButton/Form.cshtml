@@ -1,18 +1,112 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                bindBootstrapValidator();
+                $("#moduleInfoGuid").bindSelect({
+                    url: "/SystemManagement/Module/GetSelectJson?keyValue=" + details.getKeyValue() + "&type=2",
+                    id: "id",
+                    text: "text"
+                })
+            },
+            ajaxData: function () {
+                details.initControl();
+                if (!!details.getKeyValue()) {
+                    $.ajax({
+                        url: "/SystemManagement/ModuleButton/GetFormJson",
+                        data: { keyValue: details.getKeyValue() },
+                        method: "POST",
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#frmModule").formSerialize(data);
+                        }
+                    })
+                }
+            },
+            submitForm: function () {
+                if (!$("#frmModule").formValid()) {
+                    return false;
+                }
+                $.submitForm({
+                    url: "/SystemManagement/ModuleButton/SubmitForm?keyValue=" + details.getKeyValue(),
+                    param: $("#frmModule").formSerialize(),
+                    success: function () {
+                        $.toastMsg("操作成功", "success");
+                        $.currentWindow().$("#gridList").resetSelection();
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                })
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    <div> 
+<form id="frmModule" class="validate-form">
+    <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">基本信息</a></li>
+        </ul>
+        <div style="padding-top: 20px; margin-right: 30px;">
+
+            <div class="row">
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="parentGuid">上级</label>
+                    <select id="moduleInfoGuid" name="moduleInfoGuid" class="form-control selectpicker" required>
+                        <option value="0">父节点</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="btnName">名称</label>
+                    <input id="btnName" name="btnName" type="text" class="form-control" placeholder="请输入名称" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="btnEvent">按钮事件</label>
+                    <select id="btnEvent" name="btnEvent" class="form-control selectpicker" required>
+                        <option value="">请选择</option>
+                        <option value="btnAdd">添加</option>
+                        <option value="btnEdit">编辑</option>
+                        <option value="btnDelete">删除</option>
+                        <option value="btnDetails">详情</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="btnEncode">编号</label>
+                    <select id="btnEncode" name="btnEncode" class="form-control selectpicker" required>
+                        <option value="">请选择</option>
+                        <option value="btn-add-ly">btn-add-ly</option>
+                        <option value="btn-edit-ly">btn-edit-ly</option>
+                        <option value="btn-delete-ly">btn-delete-ly</option>
+                        <option value="btn-detail-ly">btn-detail-ly</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="sr-only" for="btnUri">链接</label>
+                    <input id="btnUri" name="btnUri" type="text" class="form-control" placeholder="请输入链接" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="sr-only" for="remarks">备注</label>
+                    <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
-</body>
-</html>
-*
+</form>

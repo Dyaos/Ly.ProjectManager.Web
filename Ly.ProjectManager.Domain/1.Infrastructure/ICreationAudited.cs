@@ -11,6 +11,7 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
         /// <summary>
         /// 创建者用户编号
         /// </summary>
+       
         string creatorUserId { get; set; }
         /// <summary>
         /// 创建时间

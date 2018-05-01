@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/StaticResources/Include/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/animate/animate.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/layer/theme/default/layer.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/toastr/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/ly-common-ui.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/fonts/webicons/web-icon.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/bootstrapvalidator/css/bootstrapValidator.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/login/login.css" rel="stylesheet" />
+    <style>
+        #frmModule .form-control,
+        #frmModule .form-control button {
+            height: 42px
+        }
+
+            #frmModule .form-control ul a {
+                line-height: 36px;
+            }
+
+        .checkbox-custom, .radio-custom {
+            position: relative;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px
+        }
+
+            .checkbox-custom label, .radio-custom label {
+                min-height: 22px;
+                margin-bottom: 0;
+                font-weight: 400;
+                cursor: pointer
+            }
+
+            .checkbox-custom input[type=checkbox], .radio-custom input[type=radio] {
+                position: absolute;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: -20px
+            }
+
+            .checkbox-custom.disabled label, .radio-custom.disabled label, fieldset[disabled] .checkbox-custom label, fieldset[disabled] .radio-custom label {
+                cursor: not-allowed
+            }
+
+        .input-group-addon .checkbox-custom, .input-group-addon .radio-custom {
+            margin: 0
+        }
+
+        .checkbox-custom {
+            padding-left: 20px
+        }
+
+            .checkbox-custom label {
+                position: relative;
+                display: inline-block;
+                padding-left: 10px;
+                vertical-align: middle
+            }
+
+                .checkbox-custom label:empty {
+                    padding-left: 0
+                }
+
+                .checkbox-custom label::before {
+                    position: absolute;
+                    left: 0;
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    margin-left: -20px;
+                    content: "";
+                    background-color: #fff;
+                    border: 1px solid #e4eaec;
+                    border-radius: 3px;
+                    -webkit-transition: all .3s ease-in-out 0s;
+                    -o-transition: all .3s ease-in-out 0s;
+                    transition: all .3s ease-in-out 0s
+                }
+
+                .checkbox-custom label::after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    padding-top: 1px;
+                    margin-left: -20px;
+                    font-size: 12px;
+                    line-height: 20px;
+                    color: #76838f;
+                    text-align: center
+                }
+
+            .checkbox-custom input[type=checkbox], .checkbox-custom input[type=radio] {
+                z-index: 1;
+                width: 20px;
+                height: 20px;
+                opacity: 0
+            }
+
+                .checkbox-custom input[type=checkbox]:focus + label::before, .checkbox-custom input[type=radio]:focus + label::before {
+                    outline: thin dotted;
+                    outline: 5px auto -webkit-focus-ring-color;
+                    outline: 0;
+                    outline-offset: -2px
+                }
+
+                .checkbox-custom input[type=checkbox]:checked + label::before, .checkbox-custom input[type=radio]:checked + label::before {
+                    border-color: #e4eaec;
+                    border-width: 10px;
+                    -webkit-transition: all .3s ease-in-out 0s;
+                    -o-transition: all .3s ease-in-out 0s;
+                    transition: all .3s ease-in-out 0s
+                }
+
+                .checkbox-custom input[type=checkbox]:checked + label::after, .checkbox-custom input[type=radio]:checked + label::after {
+                    /*font-family: "Web Icons";
+                    content: "\f192"*/
+                }
+
+                .checkbox-custom input[type=checkbox]:disabled + label, .checkbox-custom input[type=radio]:disabled + label {
+                    opacity: .65
+                }
+
+                    .checkbox-custom input[type=checkbox]:disabled + label::before, .checkbox-custom input[type=radio]:disabled + label::before {
+                        cursor: not-allowed;
+                        background-color: #f3f7f9;
+                        border-color: #e4eaec;
+                        border-width: 1px
+                    }
+
+            .checkbox-custom.checkbox-circle label::before {
+                border-radius: 50%
+            }
+
+            .checkbox-custom.checkbox-inline {
+                display: inline-block;
+                margin-top: 0;
+                margin-bottom: 0
+            }
+
+        .checkbox-inline + .checkbox-inline {
+            margin-left: 20px
+        }
+
+        .checkbox-default input[type=checkbox]:checked + label::before, .checkbox-default input[type=radio]:checked + label::before {
+            background-color: #fff;
+            border-color: #e4eaec;
+            border-width: 1px
+        }
+
+        .checkbox-default input[type=checkbox]:checked + label::after, .checkbox-default input[type=radio]:checked + label::after {
+            color: #62a8ea
+        }
+
+        .checkbox-primary input[type=checkbox]:checked + label::before, .checkbox-primary input[type=radio]:checked + label::before {
+            background-color: #62a8ea;
+            border-color: #62a8ea
+        }
+
+        .checkbox-primary input[type=checkbox]:checked + label::after, .checkbox-primary input[type=radio]:checked + label::after {
+            color: #fff
+        }
+
+        .checkbox-danger input[type=checkbox]:checked + label::before, .checkbox-danger input[type=radio]:checked + label::before {
+            background-color: #f96868;
+            border-color: #f96868
+        }
+
+        .checkbox-danger input[type=checkbox]:checked + label::after, .checkbox-danger input[type=radio]:checked + label::after {
+            color: #fff
+        }
+
+        .checkbox-info input[type=checkbox]:checked + label::before, .checkbox-info input[type=radio]:checked + label::before {
+            background-color: #57c7d4;
+            border-color: #57c7d4
+        }
+
+        .checkbox-info input[type=checkbox]:checked + label::after, .checkbox-info input[type=radio]:checked + label::after {
+            color: #fff
+        }
+
+        .checkbox-warning input[type=checkbox]:checked + label::before, .checkbox-warning input[type=radio]:checked + label::before {
+            background-color: #f2a654;
+            border-color: #f2a654
+        }
+
+        .checkbox-warning input[type=checkbox]:checked + label::after, .checkbox-warning input[type=radio]:checked + label::after {
+            color: #fff
+        }
+
+        .checkbox-success input[type=checkbox]:checked + label::before, .checkbox-success input[type=radio]:checked + label::before {
+            background-color: #46be8a;
+            border-color: #46be8a
+        }
+
+        .checkbox-success input[type=checkbox]:checked + label::after, .checkbox-success input[type=radio]:checked + label::after {
+            color: #fff
+        }
+
+        .checkbox-sm {
+            padding-left: 18px
+        }
+
+            .checkbox-sm label {
+                padding-left: 8px
+            }
+
+                .checkbox-sm label:empty {
+                    padding-left: 0
+                }
+
+                .checkbox-sm label::after, .checkbox-sm label::before {
+                    width: 18px;
+                    height: 18px;
+                    margin-left: -18px
+                }
+
+                .checkbox-sm label::after {
+                    font-size: 10px;
+                    line-height: 18px
+                }
+
+            .checkbox-sm input[type=checkbox], .checkbox-sm input[type=radio] {
+                width: 18px;
+                height: 18px
+            }
+
+                .checkbox-sm input[type=checkbox]:checked + label::before, .checkbox-sm input[type=radio]:checked + label::before {
+                    border-width: 9px
+                }
+
+        .checkbox-lg {
+            padding-left: 24px
+        }
+
+            .checkbox-lg label {
+                padding-left: 12px
+            }
+
+                .checkbox-lg label:empty {
+                    padding-left: 0
+                }
+
+                .checkbox-lg label::after, .checkbox-lg label::before {
+                    width: 24px;
+                    height: 24px;
+                    margin-left: -24px
+                }
+
+                .checkbox-lg label::after {
+                    font-size: 14px;
+                    line-height: 24px
+                }
+
+            .checkbox-lg input[type=checkbox], .checkbox-lg input[type=radio] {
+                width: 24px;
+                height: 24px
+            }
+
+                .checkbox-lg input[type=checkbox]:checked + label::before, .checkbox-lg input[type=radio]:checked + label::before {
+                    border-width: 12px
+                }
+    </style>
+    <link href="~/StaticResources/Include/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    @RenderSection("lyStyle", false)
+</head>
+<body>
+    <div>
+        @RenderBody()
+        @Html.AntiForgeryToken()
+        <script src="~/StaticResources/Include/jquery/jquery-3.1.1.min.js"></script>
+        <script src="~/StaticResources/Include/layer/layer.js"></script>
+        <script src="~/StaticResources/Include/toastr/js/toastr.min.js"></script>
+        <script src="~/StaticResources/Include/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
+        <script src="~/StaticResources/Include/bootstrap-select/js/bootstrap-select.js"></script>
+        <script src="~/StaticResources/Include/bootstrapvalidator/js/bootstrapValidator.js"></script>
+        <script>
+            function bindBootstrapValidator() {
+                bindBootstrapValidatorAttribute($("form.validate-form"));
+                $.each($("form.validate-form"), function () {
+                    $(this).bootstrapValidator({
+                        feedbackIcons: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        }
+                    });
+                    $(this).on("success.form.bv", function (e) {
+                        // 禁止提交默认事件
+                        e.preventDefault();
+                    });
+                });
+            }
+            //绑定验证属性 message
+            function bindBootstrapValidatorAttribute($form) {
+                $form.find("input[required]").each(function () {
+                    var msg = $(this).parents(".form-group").find("label[for]").html();
+                    $(this).attr("data-bv-notempty-message", msg + "是必填项,不能为空");
+                });
+            }
+        </script>
+        @RenderSection("lyScript", false)
+    </div>
+</body>
+</html>

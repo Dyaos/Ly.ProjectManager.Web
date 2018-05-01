@@ -152,3 +152,10 @@ input.page-login .login-form .form-control {
         width: auto
     }
 }
+
+
+.login-tips {
+    text-align: center;
+    color:red;
+    display:none;
+}

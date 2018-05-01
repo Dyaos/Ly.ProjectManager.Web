@@ -1,6 +1,7 @@
 ﻿using Ly.ProjectManager.Domain._1.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace Ly.ProjectManager.Domain._2.Entity
     [Table("ProjectTeam")]
     public class ProjectTeamEntity : IEntity<ProjectTeamEntity>, ICreationAudited, IModificationAudited, ICommonProperty
     {
+        public ProjectTeamEntity()
+        {
+            this.isEnabled = true;
+        }
         //自定义属性
         [Key]
         public string teamGuid { get; set; }
@@ -34,7 +39,9 @@ namespace Ly.ProjectManager.Domain._2.Entity
         public string deleteUserId { get; set; }
         public DateTime? deleteDateTime { get; set; }
         public int? sortCode { get; set; }
-        public bool? isEnabled { get; set; }
+        [DefaultValue(true)]
+        [Required]
+        public bool isEnabled { get; set; }
         public string remarks { get; set; }
 
         //外键属性

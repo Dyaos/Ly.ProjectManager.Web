@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
         /// <summary>
         /// 软删除标志
         /// </summary>
+        [DefaultValue(false)]
         bool isDel { get; set; }
         /// <summary>
         /// 删除人编号

@@ -15,6 +15,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
     [Table("ClassStudent")]
     public class ClassStudentEntity : IEntity<ClassStudentEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
     {
+     
         //自定义属性
         [Key]
         public string stuGuid { get; set; }

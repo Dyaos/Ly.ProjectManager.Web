@@ -10,5 +10,8 @@ namespace Ly.ProjectManager.Repository._1.IRepository.SystemManagement
 {
     public interface IRoleAuthenticationRepository : IRepositoryBase<RoleAuthenticationEntity>
     {
+        Task<int> SubmitFormAsync(List<RoleAuthenticationEntity> entities, string keyValue);
+
+        void SubmitForm(List<RoleAuthenticationEntity> entities, string keyValue);
     }
 }

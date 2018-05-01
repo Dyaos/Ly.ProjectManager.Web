@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/StaticResources/Include/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/animate/animate.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/layer/theme/default/layer.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/toastr/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/jqgrid/jqgrid.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/ly-common-ui.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    @RenderSection("lyStyle", false);
+</head>
+<body>
+    <div>
+        @RenderBody()
+        @Html.AntiForgeryToken()
+        <script src="~/StaticResources/Include/jquery/jquery-3.1.1.min.js"></script>
+        <script src="~/StaticResources/Include/layer/layer.js"></script>
+        <script src="~/StaticResources/Include/toastr/js/toastr.min.js"></script>
+        <script src="~/StaticResources/Include/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/StaticResources/Include/jqgrid/jqgrid.min.js"></script>
+        <script src="~/StaticResources/Include/jqgrid/grid.locale-cn.js"></script>
+        <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
+        @RenderSection("lyScript", false);
+    </div>
+</body>
+</html>

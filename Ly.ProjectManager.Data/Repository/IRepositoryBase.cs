@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ly.ProjectManager.Data.Repository
 {
-    public interface IRepositoryBase<TEntity> where TEntity : class
+    public interface IRepositoryBase<TEntity> : IDisposable
     {
         IRepositoryBase<TEntity> BeginTrans();
         int Commit();

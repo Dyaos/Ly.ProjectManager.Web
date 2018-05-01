@@ -188,13 +188,13 @@ namespace Ly.ProjectManager.Data.Repository
                 }
                 return await returnValue;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (dbTransaction != null)
                 {
                     this.dbTransaction.Rollback();
                 }
-                throw;
+                throw ex;
             }
             finally
             {

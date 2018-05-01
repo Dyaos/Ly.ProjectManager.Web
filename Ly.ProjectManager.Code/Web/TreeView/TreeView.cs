@@ -1,9 +1,4 @@
-﻿
-
-
-
-
-
+﻿using Ly.ProjectManager.Infrastructure.Dtos.OutputDto.RoleAuth;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,14 +6,14 @@ namespace Ly.ProjectManager.Code
 {
     public static class TreeView
     {
-        public static string TreeViewJson(this List<TreeViewModel> data, string parentId = "0")
+        public static string TreeViewJson(this List<TreeOutputDto> data, string parentId = "0")
         {
             StringBuilder strJson = new StringBuilder();
-            List<TreeViewModel> item = data.FindAll(t => t.parentId == parentId);
+            List<TreeOutputDto> item = data.FindAll(t => t.parentId == parentId);
             strJson.Append("[");
             if (item.Count > 0)
             {
-                foreach (TreeViewModel entity in item)
+                foreach (TreeOutputDto entity in item)
                 {
                     strJson.Append("{");
                     strJson.Append("\"id\":\"" + entity.id + "\",");

@@ -15,6 +15,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
     [Table("ProjectDefenceResult")]
     public class ProjectDefenceResultEntity : IEntity<ProjectDefenceResultEntity>, ICreationAudited, IModificationAudited, IDeleteAudited
     {
+       
         //自定义属性
         [Key]
         public string resultGuid { get; set; }

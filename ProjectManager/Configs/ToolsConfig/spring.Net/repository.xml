@@ -51,4 +51,9 @@
   </object>
   <object name="TeamMembersResultRepository" type="Ly.ProjectManager.Repository._2.Repository.AcademicManagement.TeamMembersResultRepository,Ly.ProjectManager.Repository" singleton="false">
   </object>
+
+  <!--公用-->
+  <object name="CommonRepository" type="Ly.ProjectManager.Data.Repository.CommonRepositoryBase,Ly.ProjectManager.Data" singleton="false">
+  </object>
 </objects>
+

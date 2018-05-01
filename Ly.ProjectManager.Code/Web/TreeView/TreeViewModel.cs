@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-namespace Ly.ProjectManager.Code
+﻿namespace Ly.ProjectManager.Code
 {
     public class TreeViewModel
     {

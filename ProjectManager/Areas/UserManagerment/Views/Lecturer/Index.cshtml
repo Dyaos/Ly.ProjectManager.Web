@@ -1,18 +1,94 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+@section lyStyle{
+    <link href="~/StaticResources/Include/bootstrap/css/bootstrap.css?v=3.3.6" rel="stylesheet" />
+    <link href="~/StaticResources/Include/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/animate.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/style.css?v=4.1.0" rel="stylesheet" />
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <!-- 全局js -->
+    <script src="~/StaticResources/Include/jquery/jquery-3.1.1.min.js"></script>
+    <script src="~/StaticResources/Include/bootstrap/js/bootstrap.js"></script>
+    <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
+    <!-- 自定义js -->
+    <script src="~/StaticResources/Web/js/content.js?v=1.0.0"></script>
+    <script>
+        $(document).ready(function () {
+            $('.contact-box').each(function () {
+                animationHover(this, 'pulse');
+            });
+            var addUser = '<div class="add-user"><a class="animated bounceInUp"  title="增加用户"><i class="fa fa-plus"></i></a></div>';
+            $('body').append(addUser);
+        });
+        var module = {
+            init: function () {
+                module.render();
+                $(".add-user").click(function () {
+                    $.modalOpen({
+                        id: "Form",
+                        title: "新增菜单",
+                        url: "/UserManagerment/Lecturer/Form",
+                        width: "750px",
+                        height: "700px",
+                        callBack: function (iframeId) {
+                            top.frames[iframeId].details.submitForm();
+                        }
+                    });
+                });
+            },
+            render: function () {
+                $.ajax({
+                    url: "/UserManagerment/Lecturer/GetDataJson",
+                    method: "Get",
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        console.info(data);
+                        renderTeacher(data);
+                    }
+                })
+            }
+        }
+        $(function () {
+            module.init();
+        });
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+        function renderTeacher(data) {
+            $(".wrapper-content div.row").html("");
+            $.each(data, function (index, item, input) {
+                var _html = "";
+                _html += '<div class="col-sm-3" ><div class="contact-box"  ><a href="#" >';
+                _html += ' <div class="col-sm-4"><div class="text-center"><img alt="image" class="img-circle m-t-xs img-responsive teacher-item" src="/StaticResources/Web/img/a5.jpg" data-guid=' + item.accountGuid + '><div class="m-t-xs font-bold">讲师</div></div></div>';
+                _html += '<div class="col-sm-8"><h3><strong>' + item.accountName + '</strong></h3><p><i class="fa fa-map-marker"></i>' + item.place + '</p>';
+                _html += ' <address><strong>湖南工程职业技术学院</strong><br>微信:' + item.wechat + '<br>QQ:' + item.qq + '<br><abbr title="Phone">Tel:</abbr>' + item.phone + '<br/>自我介绍' + item.remarks + '</address>';
+                _html += '</div>';
+                _html += '<div class="clearfix"></div></a></html></html>';
+                $(".wrapper-content div.row").append(_html);
+            });
+
+            $('img.teacher-item').on('click', function () {
+                var guid = $(this).attr('data-guid');
+                $.modalOpen({
+                    id: "Form",
+                    title: "修改菜单",
+                    url: "/UserManagerment/Lecturer/Form?keyValue=" + guid,
+                    width: "750px",
+                    height: "700px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm();
+                    }
+                });
+            });
+        }
+    </script>
+}
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
     </div>
-</body>
-</html>
-*
+</div>

@@ -1,4 +1,6 @@
-﻿using ProjectManager;
+﻿using log4net.Config;
+using Ly.ProjectManager.Code.AutoMapper;
+using ProjectManager;
 using Spring.Web.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,8 @@ namespace Ly.ProjectManager.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //启用映射
+            Configuration.Configure();
         }
     }
 }

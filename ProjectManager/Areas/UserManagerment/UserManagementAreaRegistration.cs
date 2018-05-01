@@ -8,7 +8,7 @@ namespace Ly.ProjectManager.Web.Areas.UserManagement
 {
     public class UserManagementAreaRegistration : AreaRegistration
     {
-        public override string AreaName => "UserManagement";
+        public override string AreaName => "UserManagerment";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

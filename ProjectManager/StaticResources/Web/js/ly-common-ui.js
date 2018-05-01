@@ -51,6 +51,14 @@ $.loading = function (type) {
         top.layer.closeAll("loading");
     }
 }
+//当前frame
+//index
+$.currentWindow = function () {
+    var iframeId = top.$(".J_menuTab.active").attr("data-id");
+    var iframe = top.$("iframe[data-id='" + iframeId + "']");
+    return top.frames[$(iframe[0]).attr("name")];
+}
+
 //关闭弹窗
 //type 关闭的弹窗类型
 $.closeAll = function (type) {
@@ -75,7 +83,7 @@ $.modalOpen = function (options) {
     options = $.extend(defaults, options);
     var _width = top.$(window).width() > parseInt(options.width.replace('px', '')) ? options.width : top.$(window).width() + 'px';
     var _height = top.$(window).height() > parseInt(options.height.replace('px', '')) ? options.height : top.$(window).height() + 'px';
-    top.layer.open({
+    var current = top.layer.open({
         id: options.id,
         type: 2,
         shade: options.shade,
@@ -88,7 +96,9 @@ $.modalOpen = function (options) {
         maxmin: options.maxmin, //开启最大化最小化按钮
         btnclass: options.btnclass,
         yes: function () {
-            options.callBack(options.id)
+            var iframe = top.frames[options.id];
+            var id = $(iframe).find("iframe").attr("id");
+            options.callBack(id)
         }, cancel: function () {
             return true;
         }
@@ -196,6 +206,7 @@ $.deleteForm = function (options) {
                         } else {
                             $.toastMsg(data.message, "error");
                         }
+                        $.closeAll("dialog");
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         $.loading(false);
@@ -279,3 +290,90 @@ $.fn.formValid = function (callback) {
     return true;
 }
 
+$.fn.dataGrid = function (options) {
+    var defaults = {
+        datatype: "json",
+        autowidth: true,
+        rownumbers: true,
+        shrinkToFit: false,
+        gridview: true
+    };
+    var options = $.extend(defaults, options);
+    var $element = $(this);
+    options["onSelectRow"] = function (rowid) {
+        var length = $(this).jqGrid("getGridParam", "selrow").length;
+        var $operate = $(".operate");
+        if (length > 0) {
+            $operate.animate({ "left": 0 }, 200);
+        } else {
+            $operate.animate({ "left": '-100.1%' }, 200);
+        }
+        $operate.find('.close').click(function () {
+            $operate.animate({ "left": '-100.1%' }, 200);
+        })
+    };
+    $element.jqGrid(options);
+};
+
+$.fn.jqGridRowValue = function () {
+    var $grid = $(this);
+    var selectedRowIds = $grid.jqGrid("getGridParam", "selarrrow");
+    if (selectedRowIds != "") {
+        var json = [];
+        var len = selectedRowIds.length;
+        for (var i = 0; i < len; i++) {
+            var rowData = $grid.jqGrid('getRowData', selectedRowIds[i]);
+            json.push(rowData);
+        }
+        return json;
+    } else {
+        return $grid.jqGrid('getRowData', $grid.jqGrid('getGridParam', 'selrow'));
+    }
+}
+
+$.fn.bindSelect = function (options) {
+    var defaults = {
+        id: "id",
+        text: "text",
+        search: false,
+        url: "",
+        param: [],
+        change: null
+    };
+    var options = $.extend(defaults, options);
+    var $element = $(this);
+    if (options.url != "") {
+        $.ajax({
+            url: options.url,
+            data: options.param,
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $.each(data, function (i) {
+                    $element.append($("<option></option>").val(data[i][options.id]).html(data[i][options.text]));
+                });
+            }
+        });
+    }
+}
+
+$.clientsInit = function () {
+    var dataJson = {
+        authorizeMenu: [],
+        authorizeButton: []
+    };
+    var init = function () {
+        $.ajax({
+            url: "/ClientData/GetClientsDataJson",
+            type: "get",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                dataJson.authorizeMenu = eval(data.authorizeMenu);
+                dataJson.authorizeButton = data.authorizeButton;
+            }
+        });
+    }
+    init();
+    return dataJson;
+}

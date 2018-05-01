@@ -1,18 +1,105 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                $("#parentGuid").bindSelect({
+                    url: "/SystemManagement/Module/GetSelectJson?keyValue=" + details.getKeyValue()
+                });
+            },
+            ajaxData: function () {
+                details.initControl();
+                if (!!details.getKeyValue()) {
+                    $.ajax({
+                        url: "/SystemManagement/Module/GetFormJson",
+                        data: { keyValue: details.getKeyValue() },
+                        method: "POST",
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#frmModule").formSerialize(data);
+                            $("#frmModule").find("input,.form-control,select").attr('disabled', 'disabled')
+                        }
+                    })
+                }
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Detail</title>
-</head>
-<body>
-    <div> 
+<form id="frmModule" class="validate-form">
+    <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">基本信息</a></li>
+        </ul>
+        <div style="padding-top: 20px; margin-right: 30px;">
+
+            <div class="row">
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="parentGuid">上级</label>
+                    <select id="parentGuid" name="parentGuid" class="form-control selectpicker" required>
+                        <option value="0">父节点</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="moduleName">名称</label>
+                    <input id="moduleName" name="moduleName" type="text" class="form-control" placeholder="请输入名称" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="moduleLv">等级</label>
+                    <input id="moduleLv" name="moduleLv" type="number" class="form-control" placeholder="请输入等级" required />
+                </div>
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="moduleTarget">目标</label>
+                    <select id="moduleTarget" name="moduleTarget" class="form-control selectpicker" required>
+                        <option value="">==请选择==</option>
+                        <option value="expand">无页面</option>
+                        <option value="iframe">框架页</option>
+                        <option value="open">弹出页</option>
+                        <option value="blank">新窗口</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="moduleIcon">图标</label>
+                    <input id="moduleIcon" name="moduleIcon" type="text" class="form-control" placeholder="请输入图标" />
+                </div>
+                <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="sr-only" for="moduleUri">链接</label>
+                    <input id="moduleUri" name="moduleUri" type="text" class="form-control" placeholder="请输入链接" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="checkbox-custom checkbox-inline checkbox-primary pull-left">
+                        <label class="sr-only" for="isMenu">选项</label>
+                        <input id="isMenu" name="isMenu" type="checkbox"><label for="isMuen">菜单</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="sr-only" for="remarks">备注</label>
+                    <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
-</body>
-</html>
-*
+</form>
+

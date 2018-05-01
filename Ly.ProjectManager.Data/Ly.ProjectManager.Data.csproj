@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ly.ProjectManager.Data</RootNamespace>
     <AssemblyName>Ly.ProjectManager.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,9 +49,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBContext\ProjectManagerDbContext.cs" />
-    <Compile Include="Migrations\201804161429184_Initial.cs" />
-    <Compile Include="Migrations\201804161429184_Initial.Designer.cs">
-      <DependentUpon>201804161429184_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201804300551588_Init.cs" />
+    <Compile Include="Migrations\201804300551588_Init.Designer.cs">
+      <DependentUpon>201804300551588_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804301244224_AddColumn.cs" />
+    <Compile Include="Migrations\201804301244224_AddColumn.Designer.cs">
+      <DependentUpon>201804301244224_AddColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804301334240_AddColumn1.cs" />
+    <Compile Include="Migrations\201804301334240_AddColumn1.Designer.cs">
+      <DependentUpon>201804301334240_AddColumn1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805011353011_UpdateColumn.cs" />
+    <Compile Include="Migrations\201805011353011_UpdateColumn.Designer.cs">
+      <DependentUpon>201805011353011_UpdateColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,12 +86,23 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804161429184_Initial.resx">
-      <DependentUpon>201804161429184_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804300551588_Init.resx">
+      <DependentUpon>201804300551588_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301244224_AddColumn.resx">
+      <DependentUpon>201804301244224_AddColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301334240_AddColumn1.resx">
+      <DependentUpon>201804301334240_AddColumn1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805011353011_UpdateColumn.resx">
+      <DependentUpon>201805011353011_UpdateColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
