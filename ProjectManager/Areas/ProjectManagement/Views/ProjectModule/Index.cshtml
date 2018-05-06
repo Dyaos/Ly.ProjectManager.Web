@@ -1,18 +1,291 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="~/StaticResources/Include/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/style.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/animate.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/layer/theme/default/layer.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/toastr/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/StaticResources/Web/css/ly-common-ui.css" rel="stylesheet" />
 </head>
-<body>
-    <div> 
+<body class="gray-bg">
+    <div class="row">
+
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="project-info">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <h5>所有项目模块</h5>
+                                    <div class="ibox-tools">
+                                        <a href="#" class="btn btn-primary btn-xs" onclick="module.addProjectModule()">创建新模块</a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row m-b-sm m-t-sm">
+                                        <div class="col-md-1">
+                                            <button type="button" id="loading-example-btn" onclick="module.refresh()" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+                                        </div>
+                                        <div class="col-md-11">
+                                            <div class="input-group">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="project-list">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                @*<tr>
+                                                        <td class="project-status">
+                                                            <span class="label label-primary">进行中</span>
+                                                        </td>
+                                                        <td class="project-title">
+                                                            <a href="project_detail.html">LIKE－一款能够让用户快速获得认同感的兴趣社交应用</a>
+                                                            <br />
+                                                            <small>创建于 2014.08.15</small>
+                                                        </td>
+                                                        <td class="project-completion">
+                                                            <small>当前进度： 48%</small>
+                                                            <div class="progress progress-mini">
+                                                                <div style="width: 48%;" class="progress-bar"></div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="project-people"></td>
+                                                        <td class="project-actions">
+                                                            <a href="projects.html#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 查看 </a>
+                                                            <a href="projects.html#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
+                                                        </td>
+                                                    </tr>*@
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <input type="hidden" value="" id="teamGuid" />
+    <input type="hidden" value="" id="projectInfoGuid" />
+    <script src="~/StaticResources/Include/jquery/jquery-3.1.1.min.js"></script>
+    <script src="~/StaticResources/Include/layer/layer.js"></script>
+    <script src="~/StaticResources/Include/toastr/js/toastr.min.js"></script>
+    <script src="~/StaticResources/Include/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
+    <script>
+        var module = {
+            init: function () {
+                module.render();
+                $(".project-list").on("click", '.btn-details', function () {
+                    module.details($(this).parents("tr").attr('data-id'), $(this).parents("tr").attr('data-status'));
+                })
+                $(".project-list").on("click", '.btn-edit', function () {
+                    module.modifyProjectModule($(this).parents("tr").attr('data-id'), $(this).parents("tr").attr('data-status'));
+                })
+                $(".project-list").on("click", '.btn-delete', function () {
+                    module.delProject($(this).parents("tr").attr('data-id'), $(this).parents("tr").attr('data-status'));
+                });
+                $(".project-list").on("click", '.btn-test', function () {
+                    module.modifyStatus($(this).parents("tr").attr('data-id'), 1, $(this).parents("tr").attr('data-status'));
+                });
+                $(".project-list").on("click", '.btn-complate', function () {
+                    module.modifyStatus($(this).parents("tr").attr('data-id'), 2, $(this).parents("tr").attr('data-status'));
+                });
+            },
+            addProjectModule: function () {
+                $.modalOpen({
+                    id: "Form",
+                    title: "新增模块",
+                    url: "/ProjectManagement/ProjectModule/Form?teamGuid=" + $("#teamGuid").val() + "&projectInfoGuid=" + $("#projectInfoGuid").val(),
+                    width: "800px",
+                    height: "700px;",
+                    close: true,
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm(module.render);
+                    }
+                });
+            },
+            render: function () {
+                getProjectInfo();
+
+            },
+            modifyProject: function () {
+                var guid = $.request("keyValue");
+                $.modalOpen({
+                    id: "Form",
+                    title: "修改项目",
+                    url: "/ProjectManagement/Project/Form?keyValue=" + guid,
+                    width: "800px",
+                    height: "1000px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm(module.render);
+                    }
+                });
+            },
+            modifyProjectModule: function (guid, status) {
+                if (status != "进行中") {
+                    $.toastMsg("模块已经提交测试或已完成，禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Form",
+                    title: "修改项目模块",
+                    url: "/ProjectManagement/ProjectModule/Form?keyValue=" + guid + '&teamGuid=' + $("#teamGuid").val(),
+                    width: "1120px",
+                    height: "700px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm(module.render);
+                    }
+                });
+            },
+            delProject: function (guid, status) {
+                if (status != "进行中") {
+                    $.toastMsg("模块已经提交测试或已完成，禁止操作", "error");
+                    return;
+                }
+                $.deleteForm({
+                    url: "/ProjectManagement/ProjectModule/DeleteForm",
+                    param: { keyValue: guid },
+                    success: function () {
+                        module.render();
+                    }
+                });
+            },
+            details: function (guid) {
+                $.modalOpen({
+                    id: "Details",
+                    title: "查看项目模块",
+                    url: "/ProjectManagement/ProjectModule/Detail?keyValue=" + guid + '&teamGuid=' + $("#teamGuid").val(),
+                    width: "800px",
+                    height: "650px",
+                    btn: null,
+                });
+            },
+            modifyStatus: function (guid, type, status) {
+                if (!!type && type == 2) {
+                    if (status == "已完成") {
+                        $.toastMsg("模块已完成,请勿重复提交", "error");
+                        return;
+                    }
+
+                    if (status != "测试中") {
+                        $.toastMsg("本模块未测试，不能完成", "error");
+                        return;
+                    }
+
+                    $.modalOpen({
+                        id: "Form",
+                        title: "完成工时",
+                        url: "/ProjectManagement/ProjectModule/ModifyStatus?keyValue=" + guid,
+                        width: "800px",
+                        height: "250px",
+                        callBack: function (iframeId) {
+                            top.frames[iframeId].details.submitForm(module.render);
+                        }
+                    });
+                } else {
+                    if (status == "测试中") {
+                        $.toastMsg("已在测试中,请勿重复提交测试", "error");
+                        return;
+                    }
+                    if (status == "已完成") {
+                        $.toastMsg("模块已完成", "error");
+                        return;
+                    }
+
+                    $.deleteForm({
+                        url: "/ProjectManagement/ProjectModule/ModifyStatus",
+                        param: { keyValue: guid, type: 1, status: '测试中' },
+                        prompt: "是否确认提交到测试？",
+                        success: function () {
+                            module.render();
+                        }
+                    });
+                }
+            },
+            refresh: function () {
+                module.render();
+                $.toastMsg("刷新完成", "success");
+            }
+        };
+        $(function () {
+            module.init();
+        });
+
+        function getProjectInfo() {
+            $.ajax({
+                url: '/ProjectManagement/Project/GetDataJson?keyValue=' + $.request("keyValue"),
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                    var project = data[0];
+                    console.info(project)
+                    if (!!project) {
+                        $("#teamGuid").val(project.teamInfoGuid)
+                        $("#projectInfoGuid").val(project.projectGuid)
+
+                        $(".ibox-content .project-info").html("");
+                        var $row1 = $('<div class="row"></div>');
+                        var row1Html = '<div class="col-sm-12"><div class="m-b-md" ><a href="#" class="btn btn-white btn-xs pull-right" onclick="module.modifyProject()">编辑项目</a><h2>' + project.projectName + '</h2></div >';
+                        row1Html += '<dl class="dl-horizontal"> <dt>状态：</dt> <dd> <span class="label label-primary">' + project.projectStatus + '</span></dd></dl></div >';
+
+                        var $row2 = $(' <div class="row"></div>')
+                        var row2Html = ' <div class="col-sm-5"><dl class="dl-horizontal" ><dt>项目目标：</dt><dd>' + project.projectTarget + '</dd><dt>项目背景：</dt><dd>' + project.DevelopmentBackground + '</dd><dt>项目简介：</dt><dd>' + project.projectDesc + '</dd><dt>项目开始时间：</dt><dd>' + project.startTime + '</dd></dl ></div >';
+                        row2Html += '<div class="col-sm-7" id="cluster_info"><dl class="dl-horizontal" ><dt>最后更新：</dt><dd>' + project.lastModifyDateTime + '</dd><dt>创建于：</dt><dd>' + project.creatorDateTime + '</dd><dt>团队名称：</dt><dd class="project-people">' + project.teamName + '</dd><dt>截至时间：</dt><dd>' + project.endTime + '</dd></dl> </div >';
+
+                        var $row3 = $(' <div class="row"></div>')
+                        var completeRate = project.moduleTotal == 0 ? 0 : Math.floor(project.completeTotal / project.moduleTotal);
+                        var row3Html = '<div class="row"><div class="col-sm-12" ><dl class="dl-horizontal"><dt>当前进度</dt><dd><div class="progress progress-striped active m-b-sm"><div style="width: ' + completeRate * 100 + '%;" class="progress-bar"></div></div><small>当前已完成项目总进度的 <strong>' + completeRate * 100 + '%</strong></small></dd></dl> </div ></div >';
+                        $row1.append(row1Html);
+                        $row2.append(row2Html);
+                        $row3.append(row3Html);
+                        $('.ibox-content .project-info').prepend($row3).prepend($row2).prepend($row1);
+                        getProjectModuleInfo();
+                    }
+                }
+            });
+        }
+
+        function getProjectModuleInfo() {
+            $.ajax({
+                url: '/ProjectManagement/ProjectModule/GetDataJson?keyValue=' + $("#projectInfoGuid").val(),
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                    $(".project-list table tbody").html("");
+                    $.each(data, function (index, item, input) {
+                        var $tr = $("<tr data-id=" + item.projectModuleGuid + " data-status='" + item.projectModuleStatus + "'></tr>");
+                        var $td1 = $('<td class="project-status"> <span class="label label-primary">' + item.projectModuleStatus + '</span></td>');
+                        var $td2 = $('<td class="project-title"><a href="#">' + item.projectModuleType + '－' + item.projectModuleName + '</a><br /><small>创建于 :' + item.creatorDateTime + '</small><br/><small>修改于 :' + item.lastModifyDateTime + '</small></td>');
+
+                        var $td3 = $('<td class="project-title"><a href="#">负责人:' + item.chargePerson.split('&')[1] + '</a><br /><small>预计开始时间 :' + item.expectedStartTime + '</small><br/><small>截止时间 :' + item.deadline + '</small><br/><small>预计工时 :' + item.expectedWorkHours + '小时</small></td>');
+
+                        var $td4 = $('<td class="project-people"><strong>模块详情:' + item.projectModuleDesc + '</strong><br/><small>实际完成时间:' + item.actualStartTime + '</small></br><small>实际完成工时:+' + item.actualWorkHours + '</small></td >');
+                        var $td5 = $(' <td class="project-actions"  ><a href="#"  class="btn btn-warning btn-sm btn-test"><i class="fa fa-cog fa-fw"></i> 测试 </a><a href="#"  class="btn btn-primary btn-sm btn-complate"><i class="fa fa-check"></i> 完成 </a><a href="#"  class="btn btn-white btn-sm btn-details"><i class="fa fa-folder"></i> 查看 </a><a href="#"  class="btn btn-white btn-sm btn-edit"><i class="fa fa-pencil"></i> 编辑 </a><a href="#"  class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash-o fa-fw"></i> 删除 </a></td>');
+
+                        $tr.append($td1).append($td2).append($td3).append($td4).append($td5);
+
+                        $(".project-list table tbody").append($tr);
+                    })
+                }
+            })
+        }
+    </script>
+    @Html.AntiForgeryToken()
 </body>
 </html>
-*

@@ -33,6 +33,10 @@ namespace Ly.ProjectManger.Application._3.Application.UserManagerment
 
         public async Task<OperatorModel> CheckLoginAsync(LoginInputDto loginInput)
         {
+
+            if (Md5.md5(loginInput.validCode, 16) != WebHelper.GetSession("ProjectManage_session_verifycode"))
+                throw new ProgramLogicException((new { message = "验证码不正确", errorCode = LoginResultType.loginFail }).ToJson());
+
             var param = new List<SqlParameter>() {
                 new SqlParameter("@AccountNo",loginInput.cardNo),
                 new SqlParameter("@AccountType",loginInput.accountType)
@@ -72,9 +76,8 @@ namespace Ly.ProjectManger.Application._3.Application.UserManagerment
         {
             if (string.IsNullOrEmpty(keyValue))
             {
-                entity.accountType = 2;
-                var pwd = entity.accountCard.Substring(entity.accountCard.Length - 7, 6);
-                entity.accountPwd = DESEncrypt.Encrypt(Md5.md5(pwd, 32));
+                var pwd = entity.accountCard.Substring(entity.accountCard.Length - 6, 6);
+                entity.accountPwd = DESEncrypt.Encrypt(Md5.md5(pwd, 32)).ToUpper();
                 entity.Create();
                 accountRepository.Insert(entity);
             }
@@ -98,6 +101,11 @@ namespace Ly.ProjectManger.Application._3.Application.UserManagerment
         public async Task<int> DeleteFormAsync(string keyValue)
         {
             return await accountRepository.DeleteAsync(c => c.accountGuid == keyValue);
+        }
+
+        public IList<AccountEntity> FindList(Pagination pagination)
+        {
+            return accountRepository.FindList(c => c.isEnabled == true, pagination);
         }
     }
 }

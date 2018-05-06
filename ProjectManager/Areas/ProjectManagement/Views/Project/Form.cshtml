@@ -1,18 +1,134 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+@section lyStyle{
+    <link href="~/StaticResources/Include/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+}
+@section lyScript{
+    <script src="~/StaticResources/Include/bootstrap-datetimepicker/js/moment-with-locales.js"></script>
+
+    <script src="~/StaticResources/Include/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                bindBootstrapValidator();
+                $("#teamInfoGuid").bindSelect({
+                    url: "/ProjectManagement/ProjectTeam/GetSelectJson"
+                });
+                $(".data-time").datetimepicker({
+                    format: 'YYYY-MM-DD hh:mm',
+                    locale: moment.locale('zh-cn')
+                })
+            },
+            ajaxData: function () {
+                details.initControl();
+                if (!!details.getKeyValue()) {
+                    $.ajax({
+                        url: "/ProjectManagement/Project/GetFormJson",
+                        data: { keyValue: details.getKeyValue() },
+                        method: "POST",
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#frmModule").formSerialize(data);
+                        }
+                    })
+                }
+            },
+            submitForm: function (callback) {
+                if (!$("#frmModule").formValid()) {
+                    return false;
+                }
+                $.submitForm({
+                    url: "/ProjectManagement/Project/SubmitForm?keyValue=" + details.getKeyValue(),
+                    param: $("#frmModule").formSerialize(),
+                    success: function () {
+                        callback();
+                    }
+                })
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    <div> 
+<form id="frmModule" class="validate-form form-horizontal">
+    <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">基本信息</a></li>
+        </ul>
+        <div style="padding-top: 20px; margin-right: 30px;">
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="projectName">项目名称</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <input id="projectName" name="projectName" type="text" class="form-control" placeholder="请输入项目名称" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="teamInfoGuid">负责团队</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <select id="teamInfoGuid" name="teamInfoGuid" class="form-control selectpicker" required>
+                            <option value="">==请选择项目团队==</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="control-label col-xs-4 col-sm-4 col-md-4 col-lg-4" for="startTime">开始时间</label>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <input id="startTime" name="startTime" type="text" class="form-control data-time" placeholder="请输入开始时间" required />
+                    </div>
+                </div>
+                <div class="form-group  col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="control-label col-xs-4 col-sm-4 col-md-4 col-lg-4" for="teamName">结束时间</label>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <input id="endTime" name="endTime" type="text" class="form-control data-time" placeholder="请输入结束时间" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="projectDesc">项目简介</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <textarea id="projectDesc" name="projectDesc" class="form-control" style="height:100px;resize: none" placeholder="项目简介...." required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="projectTarget">项目目标</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <textarea id="projectTarget" name="projectTarget" class="form-control" style="height:100px;resize: none" placeholder="项目目标...." required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="DevelopmentBackground">开发背景</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <textarea id="DevelopmentBackground" name="DevelopmentBackground" class="form-control" style="height:100px;resize: none" placeholder="开发背景...." required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="remarks">备注</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
-</body>
-</html>
-*
+</form>

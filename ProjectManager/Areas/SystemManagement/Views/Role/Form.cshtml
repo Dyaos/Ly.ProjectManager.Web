@@ -27,7 +27,7 @@
                 $('#wizard').wizard().on('change', function (e, data) {
                     var $finish = $("#btn_finish");
                     var $next = $("#btn_next");
-                   
+
                     if (data.direction == "next") {
                         switch (data.step) {
                             case 1:
@@ -93,7 +93,7 @@
     </script>
 }
 
-<form id="frmModule" class="validate-form">
+<form id="frmModule" class="validate-form form-horizontal">
     <div class="widget-body">
         <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
             <ul class="steps">
@@ -114,20 +114,26 @@
                     <div class="panel-body" style="width: 98%;">
                         <div class="row">
                             <div class="form-group clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <label class="sr-only" for="roleName">角色名称</label>
-                                <input id="roleName" name="roleName" type="text" class="form-control" placeholder="请输入角色名称" required />
+                                <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="roleName">角色名称</label>
+                                <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <input id="roleName" name="roleName" type="text" class="form-control" placeholder="请输入角色名称" required />
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group clearfix col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <label class="sr-only" for="roleLv">角色等级</label>
-                                <input id="roleLv" name="roleLv" type="number" max="5" min="1" class="form-control" required placeholder="请输入角色等级（示例：1,2,3...）" />
+                                <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="roleLv">角色等级</label>
+                                <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <input id="roleLv" name="roleLv" type="number" max="5" min="1" class="form-control" required placeholder="请输入角色等级（示例：1,2,3...）" />
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <label class="sr-only" for="remarks">备注</label>
-                                <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                                <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="remarks">备注</label>
+                                <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>

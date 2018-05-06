@@ -46,6 +46,7 @@
     <Compile Include="Dtos\OutputDto\AccountRole\AuthorizeActionOutputDto.cs" />
     <Compile Include="Dtos\OutputDto\Login\LoginOutputDto.cs" />
     <Compile Include="Dtos\OutputDto\Module\ModuleSelectOutputDto.cs" />
+    <Compile Include="Dtos\OutputDto\Project\ProjectInfoOutputDto.cs" />
     <Compile Include="Dtos\OutputDto\RoleAuth\TreeOutputDto.cs" />
     <Compile Include="Enum\LoginResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

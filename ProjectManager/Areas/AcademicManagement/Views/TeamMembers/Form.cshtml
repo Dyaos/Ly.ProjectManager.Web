@@ -1,18 +1,80 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                bindBootstrapValidator();
+            },
+            ajaxData: function () {
+                details.initControl();
+                $("#membersName").bindSelect({
+                    url: "/AcademicManagement/TeamMembers/GetSelectJson?keyValue=" + details.getKeyValue()
+                });
+            },
+            submitForm: function (callback) {
+                if (!$("#frmModule").formValid()) {
+                    return false;
+                }
+                $.submitForm({
+                    url: "/AcademicManagement/TeamMembers/SubmitForm?keyValue=" + details.getKeyValue(),
+                    param: $("#frmModule").formSerialize(),
+                    success: function () {
+                        callback();
+                    }
+                })
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    <div> 
+<form id="frmModule" class="validate-form form-horizontal">
+    <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">基本信息</a></li>
+        </ul>
+        <div style="padding-top: 20px; margin-right: 30px;">
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="membersName">成员名称</label>
+                    <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <select id="membersName" name="membersName" class="form-control selectpicker" required>
+                            <option value="">==请选择==</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="membersDuties">成员职责</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <select id="membersDuties" name="membersDuties" class="form-control selectpicker " required>
+                            <option value="">==请选择==</option>
+                            <option value="开发">开发</option>
+                            <option value="UI">UI</option>
+                            <option value="测试">测试</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="remarks">成员介绍</label>
+                    <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
-</body>
-</html>
-*
+</form>

@@ -1,18 +1,47 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+@section lyStyle{
+    <link href="~/StaticResources/Include/wizard/wizard.css" rel="stylesheet" />
+    <link href="~/StaticResources/Include/wdtree/tree.css" rel="stylesheet" />
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script src="~/StaticResources/Include/wizard/wizard.js"></script>
+    <script src="~/StaticResources/Include/wdtree/tree.js"></script>
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                bindBootstrapValidator();
+                $("#permissionTree").treeview({
+                    height: 400,
+                    showcheck: true,
+                    url: "/SystemManagement/RoleAuthentication/GetPermissionTree",
+                    param: { roleId: details.getKeyValue() }
+                });
+            },
+            submitForm: function () {
+                if (!$("#frmModule").formValid()) {
+                    return false;
+                }
+                $.submitForm({
+                    url: "/SystemManagement/Role/SubmitForm?keyValue=" + details.getKeyValue(),
+                    param: $("#frmModule").formSerialize(),
+                    success: function () {
+                        $.currentWindow().$("#gridList").resetSelection();
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                })
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
-*
+<form id="frmModule" class="validate-form"></form>

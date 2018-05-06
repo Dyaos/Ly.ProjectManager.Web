@@ -197,6 +197,7 @@ namespace Ly.ProjectManger.Application._3.Application.SystemManagement
             var moduleData = moduleApp.FindList(c => c.isEnabled == true).OrderBy(c => c.parentGuid).ToList();
             var btnData = buttonApp.FindList(c => c.isEnabled == true).ToList();
             var authData = new List<RoleAuthenticationEntity>();
+
             if (!string.IsNullOrEmpty(roleGuid))
             {
                 authData = roleAuthRepository.IQueryable(c => c.authRoleGuid == roleGuid).ToList();

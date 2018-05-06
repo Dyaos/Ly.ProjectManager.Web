@@ -40,7 +40,7 @@
     </script>
 }
 
-<form id="frmModule" class="validate-form">
+<form id="frmModule" class="validate-form form-horizontal">
     <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#">基本信息</a></li>
@@ -49,48 +49,60 @@
 
             <div class="row">
                 <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="sr-only" for="parentGuid">上级</label>
-                    <select id="moduleInfoGuid" name="moduleInfoGuid" class="form-control selectpicker" required>
-                        <option value="0">父节点</option>
-                    </select>
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="parentGuid">上级</label>
+                    <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <select id="moduleInfoGuid" name="moduleInfoGuid" class="form-control selectpicker" required>
+                            <option value="0">父节点</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="sr-only" for="btnName">名称</label>
-                    <input id="btnName" name="btnName" type="text" class="form-control" placeholder="请输入名称" required />
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="btnName">名称</label>
+                    <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <input id="btnName" name="btnName" type="text" class="form-control" placeholder="请输入名称" required />
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="sr-only" for="btnEvent">按钮事件</label>
-                    <select id="btnEvent" name="btnEvent" class="form-control selectpicker" required>
-                        <option value="">请选择</option>
-                        <option value="btnAdd">添加</option>
-                        <option value="btnEdit">编辑</option>
-                        <option value="btnDelete">删除</option>
-                        <option value="btnDetails">详情</option>
-                    </select>
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="btnEvent">按钮事件</label>
+                    <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <select id="btnEvent" name="btnEvent" class="form-control selectpicker" required>
+                            <option value="">请选择</option>
+                            <option value="btnAdd">添加</option>
+                            <option value="btnEdit">编辑</option>
+                            <option value="btnDelete">删除</option>
+                            <option value="btnDetails">详情</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="sr-only" for="btnEncode">编号</label>
-                    <select id="btnEncode" name="btnEncode" class="form-control selectpicker" required>
-                        <option value="">请选择</option>
-                        <option value="btn-add-ly">btn-add-ly</option>
-                        <option value="btn-edit-ly">btn-edit-ly</option>
-                        <option value="btn-delete-ly">btn-delete-ly</option>
-                        <option value="btn-detail-ly">btn-detail-ly</option>
-                    </select>
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="btnEncode">编号</label>
+                    <div class=" col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <select id="btnEncode" name="btnEncode" class="form-control selectpicker" required>
+                            <option value="">请选择</option>
+                            <option value="btn-add-ly">btn-add-ly</option>
+                            <option value="btn-edit-ly">btn-edit-ly</option>
+                            <option value="btn-delete-ly">btn-delete-ly</option>
+                            <option value="btn-detail-ly">btn-detail-ly</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label class="sr-only" for="btnUri">链接</label>
-                    <input id="btnUri" name="btnUri" type="text" class="form-control" placeholder="请输入链接" />
+                    <label class="control-label col-xs-1 col-sm-1 col-md-1 col-lg-1" for="btnUri">链接</label>
+                    <div class=" col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <input id="btnUri" name="btnUri" type="text" class="form-control" placeholder="请输入链接" />
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label class="sr-only" for="remarks">备注</label>
-                    <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                    <label class="control-label col-xs-1 col-sm-1 col-md-1 col-lg-1" for="remarks">备注</label>
+                    <div class=" col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                        <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>

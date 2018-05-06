@@ -1,94 +1,192 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Index.cshtml";
-}
-@section lyStyle{
-    <link href="~/StaticResources/Include/bootstrap/css/bootstrap.css?v=3.3.6" rel="stylesheet" />
-    <link href="~/StaticResources/Include/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" />
-    <link href="~/StaticResources/Web/css/animate.css" rel="stylesheet" />
-    <link href="~/StaticResources/Web/css/style.css?v=4.1.0" rel="stylesheet" />
 }
 
 @section lyScript{
-    <!-- 全局js -->
-    <script src="~/StaticResources/Include/jquery/jquery-3.1.1.min.js"></script>
-    <script src="~/StaticResources/Include/bootstrap/js/bootstrap.js"></script>
-    <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
-    <!-- 自定义js -->
-    <script src="~/StaticResources/Web/js/content.js?v=1.0.0"></script>
     <script>
-        $(document).ready(function () {
-            $('.contact-box').each(function () {
-                animationHover(this, 'pulse');
-            });
-            var addUser = '<div class="add-user"><a class="animated bounceInUp"  title="增加用户"><i class="fa fa-plus"></i></a></div>';
-            $('body').append(addUser);
-        });
-        var module = {
-            init: function () {
-                module.render();
-                $(".add-user").click(function () {
-                    $.modalOpen({
-                        id: "Form",
-                        title: "新增菜单",
-                        url: "/UserManagerment/Lecturer/Form",
-                        width: "750px",
-                        height: "700px",
-                        callBack: function (iframeId) {
-                            top.frames[iframeId].details.submitForm();
-                        }
-                    });
-                });
-            },
-            render: function () {
-                $.ajax({
-                    url: "/UserManagerment/Lecturer/GetDataJson",
-                    method: "Get",
-                    async: false,
-                    dataType: "json",
-                    success: function (data) {
-                        console.info(data);
-                        renderTeacher(data);
-                    }
+        var grid = {
+            initGrid: function () {
+                var $gridList = $("#gridList");
+                $gridList.dataGrid({
+                    url: '/UserManagerment/Lecturer/GetDataJson',
+                    height: $(window).height() - 200,
+                    pager: "#pager",
+                    rowNum: 20,
+                    rowList: [20, 30, 40],
+                    viewrecords: true,
+                    colModel: [
+                        { label: "guid", name: "accountGuid", hidden: true, key: true },
+                        { label: "姓名", name: "accountName", width: 200, align: 'left' },
+                        { label: '工号', name: 'accountNo', width: 100, align: 'left' },
+                        {
+                            label: '用户类型', name: 'accountType', width: 100, align: 'left',
+                            formatter: function (cellvalue) {
+                                if (cellvalue === 1) {
+                                    return "管理员";
+                                } else if (cellvalue === 2) {
+                                    return "老师";
+                                } else {
+                                    return "学生";
+                                }
+                            }
+                        },
+                        { label: '籍贯', name: 'place', width: 200, align: 'left' },
+                        {
+                            label: '性别', name: 'gender', width: 200, align: 'left',
+                            formatter: function (cellvalue) {
+                                if (cellvalue) {
+                                    return "男";
+                                } else {
+                                    return "女";
+                                }
+                            }
+                        },
+                        { label: '民族', name: 'nation', width: 150, align: 'left' },
+                        { label: '手机', name: 'phone', width: 300, align: 'left' },
+                        { label: 'QQ', name: 'qq', width: 300, align: 'left' },
+                        { label: '微信', name: 'wechat', width: 300, align: 'left' },
+                        { label: '排序码', name: 'accountIdentity', width: 100, align: 'left' },
+                        { label: '备注', name: 'remarks', width: 250, align: 'left' }
+                    ],
+                    sortname: "accountIdentity asc"
                 })
-            }
-        }
-        $(function () {
-            module.init();
-        });
-
-        function renderTeacher(data) {
-            $(".wrapper-content div.row").html("");
-            $.each(data, function (index, item, input) {
-                var _html = "";
-                _html += '<div class="col-sm-3" ><div class="contact-box"  ><a href="#" >';
-                _html += ' <div class="col-sm-4"><div class="text-center"><img alt="image" class="img-circle m-t-xs img-responsive teacher-item" src="/StaticResources/Web/img/a5.jpg" data-guid=' + item.accountGuid + '><div class="m-t-xs font-bold">讲师</div></div></div>';
-                _html += '<div class="col-sm-8"><h3><strong>' + item.accountName + '</strong></h3><p><i class="fa fa-map-marker"></i>' + item.place + '</p>';
-                _html += ' <address><strong>湖南工程职业技术学院</strong><br>微信:' + item.wechat + '<br>QQ:' + item.qq + '<br><abbr title="Phone">Tel:</abbr>' + item.phone + '<br/>自我介绍' + item.remarks + '</address>';
-                _html += '</div>';
-                _html += '<div class="clearfix"></div></a></html></html>';
-                $(".wrapper-content div.row").append(_html);
-            });
-
-            $('img.teacher-item').on('click', function () {
-                var guid = $(this).attr('data-guid');
+            },
+            btnAdd: function () {
                 $.modalOpen({
                     id: "Form",
-                    title: "修改菜单",
-                    url: "/UserManagerment/Lecturer/Form?keyValue=" + guid,
-                    width: "750px",
-                    height: "700px",
+                    title: "新增用户",
+                    url: "/UserManagerment/Lecturer/Form",
+                    width: "1200px",
+                    height: "650px",
                     callBack: function (iframeId) {
                         top.frames[iframeId].details.submitForm();
                     }
                 });
-            });
-        }
+            },
+            btnDetails: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Details",
+                    title: "查看用户",
+                    url: "/UserManagerment/Lecturer/Detail?keyValue=" + grid.getSelectRowGuid(),
+                    width: "1200px",
+                    height: "650px",
+                    btn: null,
+                });
+            },
+            btnDelete: function () {
+
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.deleteForm({
+                    url: "/UserManagerment/Lecturer/DeleteForm",
+                    param: { keyValue: grid.getSelectRowGuid() },
+                    success: function () {
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                })
+            },
+            btnEdit: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Form",
+                    title: "修改用户",
+                    url: "/UserManagerment/Lecturer/Form?keyValue=" + grid.getSelectRowGuid(),
+                    width: "1200px",
+                    height: "650px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm();
+                    }
+                });
+            },
+            btnModiyPwd: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Form",
+                    title: "修改密码",
+                    url: "/UserManagerment/Lecturer/ModfiyPwd?keyValue=" + grid.getSelectRowGuid(),
+                    width: "600px",
+                    height: "450px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm();
+                    }
+                });
+            },
+            btnModiyRole: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Form",
+                    title: "设置角色",
+                    url: "/UserManagerment/Lecturer/ModfiyRole?keyValue=" + grid.getSelectRowGuid(),
+                    width: "600px",
+                    height: "450px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm();
+                    }
+                });
+            },
+            getSelectRowGuid: function () {
+                var keyValue = $("#gridList").jqGridRowValue().accountGuid;
+                return keyValue;
+            }
+        };
+
+        $(function () {
+            grid.initGrid();
+        })
     </script>
 }
-
-
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="grid.btnAdd()"><i class="fa fa-plus"></i>新建用户</a>
+        </div>
+        <div class="operate">
+            <ul class="nav nav-pills">
+                <li class="first">已选中<span>1</span>项</li>
+                <li><a id="Ly-edit" authorize="yes" onclick="grid.btnEdit()"><i class="fa fa-pencil-square-o"></i>修改用户</a></li>
+                <li><a id="Ly-delete" authorize="yes" onclick="grid.btnDelete()"><i class="fa fa-trash-o"></i>删除用户</a></li>
+                <li><a id="Ly-Details" authorize="yes" onclick="grid.btnDetails()"><i class="fa fa-search-plus"></i>查看用户</a></li>
+                <li><a id="Ly-role" authorize="yes" onclick="grid.btnModiyRole()"><i class="fa fa-cog fa-fw"></i>设置角色</a></li>
+                <li><a id="Ly-pwd" authorize="yes" onclick="grid.btnModiyPwd()"><i class="fa fa-cog fa-fw"></i>修改密码</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="close"></a>
+        </div>
+        @*<script>$('.toolbar').authorizeButton()</script>*@
     </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="用户名称" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="pager"></div>
 </div>

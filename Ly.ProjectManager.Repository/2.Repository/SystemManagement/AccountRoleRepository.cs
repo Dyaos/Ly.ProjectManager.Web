@@ -11,5 +11,14 @@ namespace Ly.ProjectManager.Repository._2.Repository.SystemManagement
 {
     public class AccountRoleRepository : RepositoryBase<AccountRoleEntity>, IAccountRoleRepository
     {
+        public void SubmitForm(List<AccountRoleEntity> entities, string keyValue)
+        {
+            using (var dbContext = BeginTrans())
+            {
+                Delete(c => c.accountInfoGuid == keyValue);
+                Insert(entities);
+                dbContext.Commit();
+            }
+        }
     }
 }

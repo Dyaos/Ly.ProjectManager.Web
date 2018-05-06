@@ -66,11 +66,11 @@ namespace Ly.ProjectManager.Web.Areas.SystemManagement.Controllers
             {
                 if (type == 1)
                 {
-                    data = moduleApp.FindList(c => c.moduleGuid != keyValue && c.isMenu == false && c.moduleLv != "2").Select(c => new ModuleSelectOutputDto { id = c.moduleGuid, text = c.moduleName }).ToList();
+                    data = moduleApp.FindList(c => c.moduleGuid != keyValue && c.isMenu == false && c.moduleLv != "2" && c.isEnabled == true).Select(c => new ModuleSelectOutputDto { id = c.moduleGuid, text = c.moduleName }).ToList();
                 }
                 else
                 {
-                    data = moduleApp.FindList(c => c.moduleGuid != keyValue && c.isMenu == true && c.moduleLv != "1").Select(c => new ModuleSelectOutputDto { id = c.moduleGuid, text = c.moduleName }).ToList();
+                    data = moduleApp.FindList(c => c.moduleGuid != keyValue && c.isMenu == true && c.moduleLv != "1" && c.isEnabled == true).Select(c => new ModuleSelectOutputDto { id = c.moduleGuid, text = c.moduleName }).ToList();
                 }
                 WirteOperationRecord("Module", "SELECT", "查询", "Info:获取父级菜单数据(集合)");
             }

@@ -34,6 +34,7 @@ namespace Ly.ProjectManager.Code.AutoMapper
                 .ForMember(model => model.UserId, entity => entity.MapFrom(src => src.accountGuid))
                 .ForMember(model => model.RoleName, entity => entity.MapFrom(src => src.roleName))
                  .ForMember(model => model.RoleId, entity => entity.MapFrom(src => src.roleGuid))
+                    .ForMember(model => model.RoleLv, entity => entity.MapFrom(src => src.roleLv))
                  .ForMember(model => model.UserCodeNo, entity => entity.MapFrom(src => src.accountNo));
         }
     }

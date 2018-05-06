@@ -50,12 +50,16 @@
 
   <!--项目管理-->
   <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="ProjectApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectModuleController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="ProjectModuleApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectPlanController,Ly.ProjectManager.Web" singleton="false">
   </object>
   <object type="Ly.ProjectManager.Web.Areas.ProjectManagement.Controllers.ProjectTeamController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="ProjectTeamApp"/>
+    <constructor-arg index="1" ref="TeamMembersApp"/>
   </object>
 
   <!--学术管理-->
@@ -66,6 +70,8 @@
   <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.ProjectDefenceResultController,Ly.ProjectManager.Web" singleton="false">
   </object>
   <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.TeamMembersController,Ly.ProjectManager.Web" singleton="false">
+    <constructor-arg index="0" ref="TeamMembersApp"/>
+    <constructor-arg index="1" ref="AccountApp"/>
   </object>
   <object type="Ly.ProjectManager.Web.Areas.AcademicManagement.Controllers.TeamMembersResultController,Ly.ProjectManager.Web" singleton="false">
   </object>

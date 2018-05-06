@@ -35,6 +35,10 @@
             //登陆
             $("#btn-login").click(function () {
                 if ($(".login-form").formValid()) {
+                    if (!$("#validCode").val()) {
+                        $.login.formMessage("请输入验证码");
+                        return;
+                    }
                     $("#btn-login").attr('disabled', 'disabled').html("登录中.....");
                     $.login.checkLogin();
                 }
@@ -79,7 +83,7 @@
                         $("#btn-login").removeAttr('disabled').html("登录");
                         $(".reload-vify").trigger("click");
                         $("#validCode").val("");
-                        $.login.formMessage(JSON.parse(data.message).message);
+                        $.login.formMessage(JSON.parse(JSON.parse(data.message).message).message);
                     } else {
                         $.login.formMessage();
                         $("#btn-login").html("登录成功，正在跳转...");

@@ -65,6 +65,18 @@
     <Compile Include="Migrations\201805011353011_UpdateColumn.Designer.cs">
       <DependentUpon>201805011353011_UpdateColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805041659372_UpdateIdentity.cs" />
+    <Compile Include="Migrations\201805041659372_UpdateIdentity.Designer.cs">
+      <DependentUpon>201805041659372_UpdateIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805051226437_UpdateProject.cs" />
+    <Compile Include="Migrations\201805051226437_UpdateProject.Designer.cs">
+      <DependentUpon>201805051226437_UpdateProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805051512443_UpdateProject1.cs" />
+    <Compile Include="Migrations\201805051512443_UpdateProject1.Designer.cs">
+      <DependentUpon>201805051512443_UpdateProject1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CommonRepositoryBase.cs" />
@@ -103,6 +115,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805011353011_UpdateColumn.resx">
       <DependentUpon>201805011353011_UpdateColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041659372_UpdateIdentity.resx">
+      <DependentUpon>201805041659372_UpdateIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805051226437_UpdateProject.resx">
+      <DependentUpon>201805051226437_UpdateProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805051512443_UpdateProject1.resx">
+      <DependentUpon>201805051512443_UpdateProject1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,7 @@
 using Ly.ProjectManager.Data.Application;
 using Ly.ProjectManager.Domain._2.Entity;
 using Ly.ProjectManager.Infrastructure.Dtos.OutputDto.AccountRole;
+using Ly.ProjectManager.Infrastructure.Dtos.OutputDto.RoleAuth;
 using Ly.ProjectManager.Repository._1.IRepository.SystemManagement;
 using Ly.ProjectManger.Application._2.IApplication.SystemManagement;
 using System;
@@ -26,6 +27,16 @@ namespace Ly.ProjectManger.Application._3.Application.SystemManagement
             throw new NotImplementedException();
         }
 
+        public IList<AccountRoleEntity> FindList(string keyValue)
+        {
+            return accountRoleRepository.IQueryable(c => c.isEnabled == true && c.accountInfoGuid == keyValue).ToList();
+        }
+
+        public void ModifyRole(string roleList, string keyValue)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SubmitForm(AccountRoleEntity entity, string keyValue)
         {
             if (string.IsNullOrEmpty(keyValue))
@@ -39,6 +50,22 @@ namespace Ly.ProjectManger.Application._3.Application.SystemManagement
                 accountRoleRepository.Update(entity);
             }
         }
+
+        public void SubmitForm(string roleList, string keyValue)
+        {
+            var roleArr = roleList.Split(',');
+            var accountRoleList = new List<AccountRoleEntity>();
+            foreach (var roleGuid in roleArr)
+            {
+                var accountRoleEntity = new AccountRoleEntity();
+                accountRoleEntity.Create();
+                accountRoleEntity.roleInfoGuid = roleGuid;
+                accountRoleEntity.accountInfoGuid = keyValue;
+                accountRoleList.Add(accountRoleEntity);
+            }
+            accountRoleRepository.SubmitForm(accountRoleList, keyValue);
+        }
+
 
     }
 }

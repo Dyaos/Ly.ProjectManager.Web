@@ -34,8 +34,8 @@ $.toastMsg = function (msg, type, title, callback, options) {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    toastr.options = $.extend(defaults, options);
-    toastr[type](msg, title);
+    top.toastr.options = $.extend(defaults, options);
+    top.toastr[type](msg, title);
 }
 //重新加载
 $.reload = function () {
@@ -156,10 +156,10 @@ $.submitForm = function (options) {
             success: function (data) {
                 if (data.state == "success") {
                     options.success(data);
-                    $.toastMsg(data.message, data.state);
                     if (options.close == true) {
                         $.modalClose();
                     }
+                    $.toastMsg(data.message, data.state);
                 } else {
                     $.toastMsg(data.message, data.state);
                 }
@@ -376,4 +376,23 @@ $.clientsInit = function () {
     }
     init();
     return dataJson;
+}
+
+$.fn.authorizeButton = function () {
+    var moduleId = top.$(".J_menuTab.active").attr("data-id");
+
+    var dataJson = top.clients.authorizeButton[moduleId];
+    var $element = $(this);
+    $element.find('a[authorize=yes]').attr('authorize', 'no');
+
+    console.info($element.find('a[authorize=yes]'));
+    if (dataJson != undefined) {
+        $.each(dataJson, function (i) {
+            $element.find("." + dataJson[i].btnEncode).attr('authorize', 'yes');
+        });
+    }
+    console.info(dataJson);
+    $element.find("[authorize=no]").parents('li').prev('.split').remove();
+    $element.find("[authorize=no]").parents('li').remove();
+    $element.find('[authorize=no]').remove();
 }

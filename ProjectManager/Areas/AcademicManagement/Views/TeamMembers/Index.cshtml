@@ -1,18 +1,147 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script>
+        var grid = {
+            initGrid: function () {
+                var $gridList = $("#gridList");
+                $gridList.dataGrid({
+                    url: '/AcademicManagement/TeamMembers/GetDataJson?keyValue=' + grid.getKeyValue(),
+                    height: $(window).height() - 200,
+                    pager: "#pager",
+                    rowNum: 20,
+                    rowList: [20, 30, 40],
+                    viewrecords: true,
+                    colModel: [
+                        { label: "guid", name: "membersGuid", hidden: true, key: true },
+                        { label: "guid", name: "accountInfoGuid", hidden: true },
+                        { label: "成员名称", name: "membersName", width: 100, align: 'left' },
+                        { label: '成员职责', name: 'membersDuties', width: 150, align: 'left' },
+                        { label: '成员职能', name: 'membersFunction', width: 100, align: 'left' },
+                        { label: '成员介绍', name: 'remarks', width: 120, align: 'left' }
+                    ],
+                    sortname: "teamIdentity asc"
+                })
+            },
+            btnAdd: function () {
+                $.modalOpen({
+                    id: "FormTeamMembers",
+                    title: "新增团队成员",
+                    url: "/AcademicManagement/TeamMembers/Form?keyValue=" + grid.getKeyValue(),
+                    width: "750px",
+                    height: "400px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm(function () {
+                            $("#gridList").trigger("reloadGrid");
+                        });
+                    }
+                });
+            },
+            btnDetails: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Details",
+                    title: "查看用户",
+                    url: "/UserManagerment/Lecturer/Detail?keyValue=" + grid.getSelectRowAccountGuid(),
+                    width: "1000px",
+                    height: "650px",
+                    btn: null,
+                });
+            },
+            btnDelete: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.deleteForm({
+                    url: "/AcademicManagement/TeamMembers/DeleteForm",
+                    param: { keyValue: grid.getSelectRowGuid() },
+                    success: function () {
+                        $("#gridList").trigger("reloadGrid");
+                    }
+                })
+            },
+            btnLeader: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalConfirm("是否将改成员设为组长", function (result) {
+                    if (result) {
+                        $.submitForm({
+                            url: "/AcademicManagement/TeamMembers/SubmitForm",
+                            param: {
+                                keyValue: grid.getKeyValue(),
+                                membersGuid: grid.getSelectRowGuid(),
+                                accountInfoGuid: grid.getSelectRowAccountGuid()
+                            },
+                            close: false,
+                            success: function () {
+                                $.closeAll("dialog");
+                                $("#gridList").trigger("reloadGrid");
+                            }
+                        })
+                    }
+                })
+            },
+            getSelectRowGuid: function () {
+                var keyValue = $("#gridList").jqGridRowValue().membersGuid;
+                return keyValue;
+            },
+            getSelectRowAccountGuid: function () {
+                var keyValue = $("#gridList").jqGridRowValue().accountInfoGuid;
+                return keyValue;
+            },
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+        };
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+        $(function () {
+            grid.initGrid();
+        })
+    </script>
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="grid.btnAdd()"><i class="fa fa-plus"></i>新建团队成员</a>
+        </div>
+        <div class="operate">
+            <ul class="nav nav-pills">
+                <li class="first">已选中<span>1</span>项</li>
+                <li><a id="ly-details" authorize="yes" onclick="grid.btnDetails()"><i class="fa fa-trash-o"></i>查看团队成员</a></li>
+                <li><a id="Ly-delete" authorize="yes" onclick="grid.btnDelete()"><i class="fa fa-trash-o"></i>删除团队成员</a></li>
+                <li><a id="ly-edit-leader" authorize="yes" onclick="grid.btnLeader()"><i class="fa fa-trash-o"></i>设为组长</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="close"></a>
+        </div>
+        @*<script>$('.toolbar').authorizeButton()</script>*@
     </div>
-</body>
-</html>
-*
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="团队成员名称" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="pager"></div>
+</div>

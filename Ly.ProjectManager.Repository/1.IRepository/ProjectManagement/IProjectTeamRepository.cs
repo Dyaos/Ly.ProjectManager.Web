@@ -10,5 +10,6 @@ namespace Ly.ProjectManager.Repository._1.IRepository.ProjectManagement
 {
     public interface IProjectTeamRepository : IRepositoryBase<ProjectTeamEntity>
     {
+
     }
 }

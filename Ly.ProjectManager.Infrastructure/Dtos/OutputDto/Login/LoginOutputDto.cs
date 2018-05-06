@@ -12,7 +12,7 @@ namespace Ly.ProjectManager.Infrastructure.Dtos.OutputDto.Login
         public string accountPwd { get; set; }
         public string accountNo { get; set; }
         public string accountName { get; set; }
-
+        public int roleLv { get; set; }
         public bool isEnabled { get; set; }
         public bool IsSystem { get; set; }
 

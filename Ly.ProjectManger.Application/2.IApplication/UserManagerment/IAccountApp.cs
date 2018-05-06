@@ -16,5 +16,7 @@ namespace Ly.ProjectManger.Application._2.IApplication.UserManagerment
         Task<OperatorModel> CheckLoginAsync(LoginInputDto loginInput);
 
         IList<AccountEntity> FindList(Expression<Func<AccountEntity, bool>> predicate);
+
+        IList<AccountEntity> FindList(Pagination pagination);
     }
 }

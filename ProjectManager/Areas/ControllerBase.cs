@@ -1,5 +1,6 @@
 ﻿using Ly.ProjectManager.Code;
 using Ly.ProjectManager.Domain._2.Entity;
+using Ly.ProjectManager.Web.Handler;
 using Ly.ProjectManger.Application._2.IApplication.SystemManagement;
 using Spring.Context;
 using Spring.Context.Support;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Ly.ProjectManager.Web.Areas
 {
+    [HandlerLogin]
     public class ControllerBase : Controller
     {
         public OperationLogEntity log;

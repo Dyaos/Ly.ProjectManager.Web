@@ -1,18 +1,143 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script>
+        var grid = {
+            initGrid: function () {
+                var $gridList = $("#gridList");
+                $gridList.dataGrid({
+                    url: '/ProjectManagement/ProjectTeam/GetDataJson',
+                    height: $(window).height() - 200,
+                    pager: "#pager",
+                    rowNum: 20,
+                    rowList: [20, 30, 40],
+                    viewrecords: true,
+                    colModel: [
+                        { label: "guid", name: "teamGuid", hidden: true, key: true },
+                        { label: "团队名称", name: "teamName", width: 200, align: 'left' },
+                        { label: '团队介绍', name: 'remarks', width: 250, align: 'left' }
+                    ],
+                    sortname: "teamIdentity asc"
+                })
+            },
+            btnAdd: function () {
+                $.modalOpen({
+                    id: "Form",
+                    title: "新增团队",
+                    url: "/ProjectManagement/ProjectTeam/Form",
+                    width: "750px",
+                    height: "400px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm();
+                    }
+                });
+            },
+            btnDetails: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Details",
+                    title: "查看团队",
+                    url: "/ProjectManagement/ProjectTeam/Detail?keyValue=" + grid.getSelectRowGuid(),
+                    width: "750px",
+                    height: "400px",
+                    btn: null,
+                });
+            },
+            btnDelete: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.deleteForm({
+                    url: "/ProjectManagement/ProjectTeam/DeleteForm",
+                    param: { keyValue: grid.getSelectRowGuid() },
+                    success: function () {
+                        $.currentWindow().$("#gridList").trigger("reloadGrid");
+                    }
+                })
+            },
+            btnEdit: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "Form",
+                    title: "修改团队",
+                    url: "/ProjectManagement/ProjectTeam/Form?keyValue=" + grid.getSelectRowGuid(),
+                    width: "750px",
+                    height: "400px",
+                    callBack: function (iframeId) {
+                        top.frames[iframeId].details.submitForm();
+                    }
+                });
+            },
+            btnAddMembers: function () {
+                if (!grid.getSelectRowGuid()) {
+                    $.toastMsg("禁止操作", "error");
+                    return;
+                }
+                $.modalOpen({
+                    id: "FormMembers",
+                    title: "团队成员管理",
+                    url: "/AcademicManagement/TeamMembers/Index?keyValue=" + grid.getSelectRowGuid(),
+                    width: "900px",
+                    height: "800px",
+                    btn: null
+                });
+            },
+            getSelectRowGuid: function () {
+                var keyValue = $("#gridList").jqGridRowValue().teamGuid;
+                return keyValue;
+            }
+        };
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+        $(function () {
+            grid.initGrid();
+        })
+    </script>
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="grid.btnAdd()"><i class="fa fa-plus"></i>新建团队</a>
+        </div>
+        <div class="operate">
+            <ul class="nav nav-pills">
+                <li class="first">已选中<span>1</span>项</li>
+                <li><a id="Ly-edit" authorize="yes" onclick="grid.btnEdit()"><i class="fa fa-pencil-square-o"></i>修改团队</a></li>
+                <li><a id="Ly-delete" authorize="yes" onclick="grid.btnDelete()"><i class="fa fa-trash-o"></i>删除团队</a></li>
+                <li><a id="Ly-Details" authorize="yes" onclick="grid.btnDetails()"><i class="fa fa-search-plus"></i>查看团队</a></li>
+                <li><a id="ly-add-members" authorize="yes" onclick="grid.btnAddMembers()"><i class="fa fa-search-plus"></i>新增团队成员</a></li>
+            </ul>
+            <a href="javascript:void(0);" class="close"></a>
+        </div>
+        @*<script>$('.toolbar').authorizeButton()</script>*@
     </div>
-</body>
-</html>
-*
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="团队名称" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="pager"></div>
+</div>

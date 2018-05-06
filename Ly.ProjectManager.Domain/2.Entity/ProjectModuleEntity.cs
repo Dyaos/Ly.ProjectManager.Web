@@ -47,6 +47,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
         /// 负责人
         /// </summary>
         public string chargePerson { get; set; }
+        public string chargePersonInfoGuid { get; set; }
         /// <summary>
         /// 完成人
         /// </summary>
@@ -80,8 +81,9 @@ namespace Ly.ProjectManager.Domain._2.Entity
         [Required]
         public bool isEnabled { get; set; }
         public string remarks { get; set; }
-      
-        
-       
+
+
+        //外键属性
+        public string projectInfoGuid { get; set; }
     }
 }

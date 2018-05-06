@@ -11,7 +11,12 @@
     <link href="~/StaticResources/Include/jqgrid/jqgrid.css" rel="stylesheet" />
     <link href="~/StaticResources/Web/css/ly-common-ui.css" rel="stylesheet" />
     <link href="~/StaticResources/Include/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    @RenderSection("lyStyle", false);
+    <style>
+        body {
+            padding: 10px;
+        }
+    </style>
+    @RenderSection("lyStyle", false)
 </head>
 <body>
     <div>
@@ -21,10 +26,10 @@
         <script src="~/StaticResources/Include/layer/layer.js"></script>
         <script src="~/StaticResources/Include/toastr/js/toastr.min.js"></script>
         <script src="~/StaticResources/Include/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
         <script src="~/StaticResources/Include/jqgrid/jqgrid.min.js"></script>
         <script src="~/StaticResources/Include/jqgrid/grid.locale-cn.js"></script>
-        <script src="~/StaticResources/Web/js/ly-common-ui.js"></script>
-        @RenderSection("lyScript", false);
+        @RenderSection("lyScript", false)
     </div>
 </body>
 </html>

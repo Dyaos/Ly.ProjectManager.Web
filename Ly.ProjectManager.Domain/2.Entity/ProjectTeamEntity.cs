@@ -24,7 +24,7 @@ namespace Ly.ProjectManager.Domain._2.Entity
         [Key]
         public string teamGuid { get; set; }
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
-        public string teamIdentity { get; set; }
+        public int teamIdentity { get; set; }
         public string teamName { get; set; }
         /// <summary>
         /// 允许创建项目类别

@@ -42,7 +42,7 @@ namespace Ly.ProjectManager.Data.Repository
                 }
                 return returnValue;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (dbTransaction != null)
                 {

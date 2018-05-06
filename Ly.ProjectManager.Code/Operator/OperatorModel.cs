@@ -10,6 +10,7 @@ namespace Ly.ProjectManager.Code
         public string UserPwd { get; set; }
         public string RoleId { get; set; }
         public string RoleName { get; set; }
+        public int RoleLv { get; set; }
         public string LoginIPAddress { get; set; }
         public string LoginIPAddressName { get; set; }
         public string LoginToken { get; set; }

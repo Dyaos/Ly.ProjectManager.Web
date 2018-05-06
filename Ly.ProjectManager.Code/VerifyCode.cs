@@ -30,7 +30,7 @@ namespace Ly.ProjectManager.Code
                 chkCode += character[rnd.Next(character.Length)];
             }
             //写入Session、验证码加密
-            WebHelper.WriteSession("Ly.ProjectManage_session_verifycode", Md5.md5(chkCode.ToLower(), 16));
+            WebHelper.WriteSession("ProjectManage_session_verifycode", Md5.md5(chkCode.ToLower(), 16));
             //创建画布
             Bitmap bmp = new Bitmap(codeW, codeH);
             Graphics g = Graphics.FromImage(bmp);

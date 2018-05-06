@@ -1,18 +1,64 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Form.cshtml";
 }
 
-<!DOCTYPE html>
+@section lyScript{
+    <script>
+        var details = {
+            getKeyValue: function () {
+                return $.request("keyValue");
+            },
+            initControl: function () {
+                bindBootstrapValidator();
+            },
+            ajaxData: function () {
+                details.initControl();
+                if (!!details.getKeyValue()) {
+                    $.ajax({
+                        url: "/ProjectManagement/ProjectTeam/GetFormJson",
+                        data: { keyValue: details.getKeyValue() },
+                        method: "POST",
+                        async: false,
+                        dataType: "json",
+                        success: function (data) {
+                            $("#frmModule").formSerialize(data);
+                            $("#frmModule").find("input,.form-control,select").attr('disabled', 'disabled');
+                        }
+                    })
+                }
+            }
+        };
+        $(function () {
+            details.ajaxData();
+        })
+    </script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Detail</title>
-</head>
-<body>
-    <div> 
+<form id="frmModule" class="validate-form form-horizontal">
+    <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">基本信息</a></li>
+        </ul>
+        <div style="padding-top: 20px; margin-right: 30px;">
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="teamName">团队名称</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <input id="teamName" name="teamName" type="text" class="form-control" placeholder="请输入团队名称" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group  col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2" for="remarks">团队介绍</label>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <textarea id="remarks" name="remarks" class="form-control" style="height:100px;resize: none" placeholder="该留点什么...."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
-</body>
-</html>
-*
+</form>
+

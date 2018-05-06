@@ -67,6 +67,7 @@ namespace Ly.ProjectManager.Web.Controllers
             var ajaxObj = new AjaxResult();
             try
             {
+
                 var entity = await accountApp.CheckLoginAsync(loginInput);
                 entity.LoginIPAddress = Net.Ip;
                 entity.LoginIPAddressName = Net.GetLocation(entity.LoginIPAddress);
@@ -80,7 +81,7 @@ namespace Ly.ProjectManager.Web.Controllers
             catch (ProgramLogicException ex)
             {
                 ajaxObj.state = ResultType.error.ToString();
-                ajaxObj.message = ex.Message;
+                ajaxObj.message = (new { message = ex.Message.ToString(), errorCode = LoginResultType.loginFail }).ToJson();
                 log.creatorUserId = "游客";
                 log.logDetails = ex.Message.ToString();
                 LogFactory.GetLogger(typeof(LoginController)).Info(log);

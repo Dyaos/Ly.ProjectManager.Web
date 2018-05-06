@@ -1,5 +1,7 @@
-﻿using Ly.ProjectManager.Code;
+﻿using Ly.ProjectManage.Code.Security;
+using Ly.ProjectManager.Code;
 using Ly.ProjectManager.Domain._2.Entity;
+using Ly.ProjectManager.Infrastructure.Dtos.OutputDto.RoleAuth;
 using Ly.ProjectManager.Web.Handler;
 using Ly.ProjectManger.Application._2.IApplication.SystemManagement;
 using Ly.ProjectManger.Application._2.IApplication.UserManagerment;
@@ -31,22 +33,19 @@ namespace Ly.ProjectManager.Web.Areas.UserManagerment.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetDataJson()
+        public ActionResult GetDataJson(Pagination pagination)
         {
             var data = new List<AccountEntity>();
-            var lecturerData = new List<ClassTeacherEntity>();
             try
             {
-                lecturerData = classTeacherApp.FindList(c => c.teacherType == 1).ToList();
-                data = accountApp.FindList(c => c.accountType == 2).ToList();
-                data = (from l in lecturerData join a in data on l.accountInfoGuid equals a.accountGuid select a).ToList();
+                data = accountApp.FindList(pagination).ToList();
                 WirteOperationRecord("Account", "SELECT", "查询", "Info:获取讲师资料(集合)");
             }
             catch (Exception ex)
             {
                 log.logType = "ERROR";
                 log.logLevel = "ERROR";
-                WirteOperationRecord("Module", "", "", "Info:" + ex.Message.ToString());
+                WirteOperationRecord("Account", "", "", "Info:" + ex.Message.ToString());
             }
             return Content(data.ToJson());
         }
@@ -79,17 +78,18 @@ namespace Ly.ProjectManager.Web.Areas.UserManagerment.Controllers
 
                 if (string.IsNullOrEmpty(keyValue))
                 {
-                    //插入班级讲师
-                    var classTeacherEntity = new ClassTeacherEntity()
-                    {
-                        accountInfoGuid = entity.accountGuid,
-                        teacherType = 1
-                    };
-
-                    classTeacherApp.SubmitForm(classTeacherEntity, "");
-
                     //插入用户角色
-                    var roleEntity = roleApp.FindEntity(c => c.roleName.Contains("讲师"));
+                    string roleName = "学生";
+                    if (entity.accountType == 1)
+                    {
+                        roleName = "管理员";
+                    }
+                    else if (entity.accountType == 2)
+                    {
+                        roleName = "讲师";
+                    }
+                    var roleEntity = roleApp.FindEntity(c => c.roleName.Contains(roleName));
+
                     var accountRole = new AccountRoleEntity()
                     {
                         roleInfoGuid = roleEntity.roleGuid,
@@ -135,6 +135,80 @@ namespace Ly.ProjectManager.Web.Areas.UserManagerment.Controllers
                 return Error(ex.Message.ToString());
             }
             return Success("删除成功.");
+        }
+
+
+        public ActionResult ModfiyPwd()
+        {
+            return View();
+        }
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult ModfiyPwd(string oldPwd, string newPwd, string keyValue)
+        {
+            try
+            {
+                oldPwd = DESEncrypt.Encrypt(Md5.md5(oldPwd, 32)).ToUpper();
+                var entity = accountApp.FindList(c => c.isEnabled == true && c.accountPwd == oldPwd && c.accountGuid == keyValue);
+                if (entity == null || entity.Count == 0)
+                    new Exception("请输入正确的密码");
+                entity[0].accountPwd = DESEncrypt.Encrypt(Md5.md5(newPwd, 32)).ToUpper();
+                accountApp.SubmitForm(entity[0], keyValue);
+
+                WirteOperationRecord("Account", "UPDATE", "修改", "Info:修改用户密码");
+            }
+            catch (Exception ex)
+            {
+                log.logType = "ERROR";
+                log.logLevel = "ERROR";
+                WirteOperationRecord("Account", "", "", "Info:" + ex.Message.ToString());
+                return Error("修改失败");
+            }
+            return Success("修改成功");
+        }
+
+        public ActionResult ModfiyRole()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult ModfiyRole(string roleList, string keyValue)
+        {
+            try
+            {
+                accountRoleApp.SubmitForm(roleList, keyValue);
+                WirteOperationRecord("Role", "UPDATE", "修改", "Info:修改用户角色");
+            }
+            catch (Exception ex)
+            {
+                log.logType = "ERROR";
+                log.logLevel = "ERROR";
+                WirteOperationRecord("Role", "", "", "Info:" + ex.Message.ToString());
+                return Error("修改角色失败");
+            }
+            return Success("修改角色成功");
+        }
+
+        [HttpGet]
+        public ActionResult GetRoleList(string keyValue)
+        {
+            var entity = new List<TreeOutputDto>();
+            try
+            {
+                entity = roleApp.GetRoleList(keyValue);
+                WirteOperationRecord("Role", "SELECT", "查询", "Info:获取角色集合(单个)");
+            }
+            catch (Exception ex)
+            {
+                log.logType = "ERROR";
+                log.logLevel = "ERROR";
+                WirteOperationRecord("Role", "", "", "Info:" + ex.Message.ToString());
+            }
+            return Content(entity.TreeViewJson());
         }
     }
 }

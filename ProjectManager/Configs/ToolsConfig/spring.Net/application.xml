@@ -29,6 +29,7 @@
   <object name="RoleApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.RoleApp,Ly.ProjectManger.Application" singleton="false">
     <constructor-arg index="0" ref="RoleRepository"/>
     <constructor-arg index="1" ref="RoleAuthenticationApp"/>
+    <constructor-arg index="2" ref="AccountRoleApp"/>
   </object>
   <object name="RoleAuthenticationApp" type="Ly.ProjectManger.Application._3.Application.SystemManagement.RoleAuthenticationApp,Ly.ProjectManger.Application" singleton="false">
     <constructor-arg index="0" ref="ModuleApp"/>
@@ -47,12 +48,17 @@
 
   <!--项目管理-->
   <object name="ProjectApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="ProjectRepository"/>
+    <constructor-arg index="1" ref="CommonRepository"/>
   </object>
   <object name="ProjectModuleApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectModuleApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="ProjectModuleRepository"/>
+    <constructor-arg index="1" ref="CommonRepository"/>
   </object>
   <object name="ProjectPlanApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectPlanApp,Ly.ProjectManger.Application" singleton="false">
   </object>
   <object name="ProjectTeamApp" type="Ly.ProjectManger.Application._3.Application.ProjectManagement.ProjectTeamApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="ProjectTeamRepository"/>
   </object>
 
   <!--学术管理-->
@@ -63,6 +69,9 @@
   <object name="ProjectDefenceResultApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.ProjectDefenceResultApp,Ly.ProjectManger.Application" singleton="false">
   </object>
   <object name="TeamMembersApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.TeamMembersApp,Ly.ProjectManger.Application" singleton="false">
+    <constructor-arg index="0" ref="TeamMembersRepository"/>
+    <constructor-arg index="1" ref="AccountRoleApp"/>
+    <constructor-arg index="2" ref="RoleApp"/>
   </object>
   <object name="TeamMembersResultApp" type="Ly.ProjectManger.Application._3.Application.AcademicManagement.TeamMembersResultApp,Ly.ProjectManger.Application" singleton="false">
   </object>

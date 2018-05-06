@@ -1,6 +1,7 @@
 ﻿using Ly.ProjectManager.Code;
 using Ly.ProjectManager.Data.Application;
 using Ly.ProjectManager.Domain._2.Entity;
+using Ly.ProjectManager.Infrastructure.Dtos.OutputDto.RoleAuth;
 using Ly.ProjectManager.Repository._1.IRepository.SystemManagement;
 using Ly.ProjectManger.Application._2.IApplication.SystemManagement;
 using System;
@@ -16,10 +17,13 @@ namespace Ly.ProjectManger.Application._3.Application.SystemManagement
     {
         private IRoleRepository roleRepository;
         private IRoleAuthenticationApp roleAuthApp;
-        public RoleApp(IRoleRepository roleRepository, IRoleAuthenticationApp roleAuthApp)
+        private IAccountRoleApp accountRoleApp;
+
+        public RoleApp(IRoleRepository roleRepository, IRoleAuthenticationApp roleAuthApp, IAccountRoleApp accountRoleApp)
         {
             this.roleRepository = roleRepository;
             this.roleAuthApp = roleAuthApp;
+            this.accountRoleApp = accountRoleApp;
         }
         public void DeleteForm(string keyValue)
         {
@@ -64,6 +68,37 @@ namespace Ly.ProjectManger.Application._3.Application.SystemManagement
         public RoleEntity FindEntity(Expression<Func<RoleEntity, bool>> predicate)
         {
             return roleRepository.FindEntity(predicate);
+        }
+
+        public List<TreeOutputDto> GetRoleList(string keyValue)
+        {
+            var roleList = roleRepository.IQueryable(c => c.isEnabled == true).ToList();
+            var accountRoleList = new List<AccountRoleEntity>();
+
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                accountRoleList = accountRoleApp.FindList(keyValue).ToList();
+            }
+
+            var treeList = new List<TreeOutputDto>();
+            foreach (RoleEntity item in roleList)
+            {
+                var tree = new TreeOutputDto();
+
+                tree.id = item.roleGuid;
+                tree.text = item.roleName;
+                tree.value = string.Empty;
+                tree.parentId = "0";
+                tree.isexpand = true;
+                tree.complete = true;
+                tree.showcheck = true;
+                tree.checkstate = accountRoleList.Count(t => t.roleInfoGuid == item.roleGuid);
+                tree.hasChildren = false;
+                tree.img = "";
+                treeList.Add(tree);
+            }
+
+            return treeList;
         }
     }
 }

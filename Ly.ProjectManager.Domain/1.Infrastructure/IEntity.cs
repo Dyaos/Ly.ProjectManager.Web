@@ -22,8 +22,9 @@ namespace Ly.ProjectManager.Domain._1.Infrastructure
                 entity.creatorUserId = LoginInfo.UserId;
             }
             entity.creatorDateTime = DateTime.Now;
+            var guid = Common.GuId();
             //设置主键
-            SetPrimaryKeyValue(Common.GuId());
+            SetPrimaryKeyValue(guid);
         }
         /// <summary>
         /// 修改

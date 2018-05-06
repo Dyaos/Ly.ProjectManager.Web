@@ -13,18 +13,17 @@
                     treeGridModel: "adjacency",
                     ExpandColumn: "moduleLv",
                     url: '/SystemManagement/Module/GetTreeGridJson',
-                    height: $(window).height() - 150,
-                    width: $(window).width() - 120,
+                    height: $(window).height() - 200,
                     pager: "#pager",
                     rowNum: 20,
                     rowList: [20, 30, 40],
                     viewrecords: true,
                     colModel: [
                         { label: "主键", name: "moduleGuid", hidden: true, key: true },
-                        { label: '菜单名称', name: 'moduleName', width: 150, align: 'left' },
-                        { label: '菜单等级', name: 'moduleLv', width: 140, align: 'left' },
-                        { label: '菜单图标', name: 'moduleIcon', width: 150, align: 'left' },
-                        { label: '链接', name: 'moduleUri', width: 300, align: 'left' },
+                        { label: '菜单名称', name: 'moduleName', width: 120, align: 'left' },
+                        { label: '菜单等级', name: 'moduleLv', width: 100, align: 'left' },
+                        { label: '菜单图标', name: 'moduleIcon', width: 120, align: 'left' },
+                        { label: '链接', name: 'moduleUri', width: 250, align: 'left' },
                         {
                             label: '目标', name: 'moduleTarget', width: 150, align: 'left',
                             formatter: function (cellvalue) {
@@ -46,11 +45,11 @@
                             }
                         },
                         {
-                            label: '创建时间', name: 'creatorDateTime', width: 150, align: 'left',
+                            label: '创建时间', name: 'creatorDateTime', width: 100, align: 'left',
                             formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                         },
                         { label: '排序码', name: 'moduleIdentity', width: 100, align: 'left' },
-                        { label: '备注', name: 'remarks', width: 250, align: 'left' }
+                        { label: '备注', name: 'remarks', width: 200, align: 'left' }
                     ],
                     sortname: "moduleIdentity asc"
                 })
@@ -60,7 +59,7 @@
                     id: "Form",
                     title: "新增菜单",
                     url: "/SystemManagement/Module/Form",
-                    width: "750px",
+                    width: "850px",
                     height: "500px",
                     callBack: function (iframeId) {
                         top.frames[iframeId].details.submitForm();
@@ -72,7 +71,7 @@
                     id: "Details",
                     title: "查看菜单",
                     url: "/SystemManagement/Module/Detail?keyValue=" + grid.getSelectRowGuid(),
-                    width: "750px",
+                    width: "850px",
                     height: "500px",
                     btn: null,
                 });
@@ -91,7 +90,7 @@
                     id: "Form",
                     title: "修改菜单",
                     url: "/SystemManagement/Module/Form?keyValue=" + grid.getSelectRowGuid(),
-                    width: "750px",
+                    width: "850px",
                     height: "550px",
                     callBack: function (iframeId) {
                         top.frames[iframeId].details.submitForm();

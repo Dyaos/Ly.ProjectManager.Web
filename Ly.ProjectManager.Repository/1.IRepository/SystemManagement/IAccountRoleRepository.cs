@@ -10,5 +10,7 @@ namespace Ly.ProjectManager.Repository._1.IRepository.SystemManagement
 {
     public interface IAccountRoleRepository : IRepositoryBase<AccountRoleEntity>
     {
+        void SubmitForm(List<AccountRoleEntity> entities, string keyValue);
     }
 }
+
